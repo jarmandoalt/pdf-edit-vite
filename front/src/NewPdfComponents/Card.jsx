@@ -201,7 +201,7 @@ const Card = () => {
         arrayRefs[e.target.slot].current
       ),
       data = elementStyle.getPropertyValue("transform"),
-      auxData = data.substring(0, data.length - 1),
+      auxData = data.charAt.d.addFechaa.substring(0, data.length - 1),
       arrData = auxData.split(","),
       stringArr = arrData[4] + arrData[5];
     console.log(stringArr);
