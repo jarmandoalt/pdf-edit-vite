@@ -46,7 +46,7 @@ const New = (e) => {
 
   return (
     <>
-      <Header titles={`Crear Plantilla Pdf/ ${name}`} />
+      <Header titles={`Crear Plantilla / ${name}`} />
       <div className="new_container">
         <div className="car_div">
           <Card/>
