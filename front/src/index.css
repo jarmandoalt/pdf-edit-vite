@@ -1,0 +1,792 @@
+h1,
+h2,
+p,
+a,
+input,
+label,
+select,
+button,
+li {
+  font-family: Dosis;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+.bodyRoot {
+  background-color: whitesmoke;
+}
+
+button {
+  border-style: none;
+  border-radius: 5px;
+}
+
+.btnRoot {
+  background-color: darkgray;
+}
+
+.btnRoot:hover {
+  background-color: rgb(37, 91, 172);
+  color: aliceblue;
+}
+
+.btnSignOff {
+  z-index: 999;
+  width: 10vw;
+  position: fixed;
+  top: 2.7vh;
+  left: 80vw;
+  border-radius: 5px;
+}
+
+.btnSignOff > button {
+  width: 10vw;
+  font-size: 1.3vw;
+}
+
+.btnSignOff > button:hover {
+  background-color: rgb(126, 59, 59);
+  color: aliceblue;
+}
+
+.divLoader {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10vh;
+}
+
+select,
+input,
+textarea {
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: rgb(182, 179, 169);
+  border-radius: 5px;
+}
+
+select,
+input {
+  text-align: center;
+}
+
+input:focus {
+  background-color: rgb(250, 249, 248);
+}
+
+input:focus-visible {
+  outline: 1px solid rgb(218, 215, 208);
+}
+
+select:focus {
+  background-color: rgb(250, 249, 248);
+}
+
+select:focus-visible {
+  outline: 1px solid rgb(218, 215, 208);
+}
+
+select::after {
+  display: table-cell;
+  background-color: crimson;
+  pointer-events: none;
+}
+
+.navbar > h1 {
+  width: 99vw;
+  background-color: rgb(58, 67, 77);
+  color: aliceblue;
+  position: fixed;
+  top: .5vh;
+  left: .5vw;
+  z-index: 999;
+  padding-left: 10vw;
+  border-radius: 5px;
+  height: 9vh;
+}
+
+/***********   Home   **********/
+
+.add {
+  position: relative;
+  margin-top: 10vh;
+  left: 45vw;
+  width: 10vw;
+  height: 8vh;
+  font-size: 4vh;
+}
+
+
+.btnPdf {
+  position: relative;
+  width: 60.33vw;
+  left: 20vw;
+  top: 3vh;
+  background-color: whitesmoke;
+}
+
+.btnPdf > button {
+  width: 19.66vw;
+  height: 7vh;
+  margin-right: .33vw;
+  font-size: 2vw;
+  background-color: silver;
+}
+
+.btnPdf > button:first-child {
+  background-color: cadetblue;
+  color: whitesmoke;
+}
+
+.listPdf {
+  position: absolute;
+  width: 58vw;
+  top: 28vh;
+  left: 20vw;
+  height: .1vh;
+  z-index: -10;
+  transition: .2s ease-in-out;
+}
+
+.listPdf.is-active {
+  top: 16.5vw;
+  height: 10vh;
+  transition: .2s ease-in-out;
+}
+
+.listPdf > div {
+  background-color: rgb(58, 67, 77);
+  height: .1vh;
+  width: 59.5vw;
+  border-radius: 5px;
+  margin-bottom: .5vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listPdf.is-active > div {
+  height: 8vh;
+}
+
+.divList{
+  background-color: whitesmoke;
+  margin-top: .5vh;
+  margin-left: 1vw;
+  height: .1vh;
+  width: 58vw;
+}
+
+.listPdf.is-active > div > div {
+  height: 7vh;
+}
+
+.cardPdf {
+  width: 57vw;
+  text-align: start;
+  border-radius: 5px;
+  height: .1vh;
+  padding-top: -2vh;
+  padding-left: 1.5vw;
+  list-style: none;
+  font-size: .1vw;
+}
+
+.listPdf.is-active > div > div > h1 {
+  height: 5vw;
+  font-size: 3vw;
+}
+
+.btnPdfs {
+  position: absolute;
+  left: 46vw;
+  top: -2vh;
+  width: 12vw;
+  height: .1vh;
+}
+
+.btnPdfs.is-active {
+  position: relative;
+  top: -6vh;
+}
+
+.btnIr {
+  width: 5vw;
+  height: .1vh;
+  font-size: .1vh;
+}
+
+.listPdf.is-active > div > div > button {
+  height: 5vh;
+  font-size: 1.5vw;
+}
+
+.btnDelete {
+  background-color: rgb(206, 121, 121);
+  color: aliceblue;
+  height: .1vh;
+  position: relative;
+  margin-left: 5px;
+  font-size: .1vh;
+}
+
+.listPdf.is-active > div > div > a > button {
+  height: 5vh;
+  font-size: 1.5vw;
+}
+
+.btnDelete:hover {
+  background-color: rgb(122, 19, 19);
+  color: antiquewhite;
+}
+
+.dontHave > h1{
+  position: absolute;
+  background-color: slategray;
+  color: whitesmoke;
+  left: 20vw;
+  width: 59.5vw;
+  border-radius: 5px;
+  text-align: center;
+  top: 25vh;
+  height: .1vh;
+  font-size: .1vh;
+  z-index: -10;
+  transition: .5s ease-in-out;
+}
+
+.dontHave.is-active > h1 {
+  top: 35.5vh;
+  height: 7vh;
+  font-size: 2.6vw;
+  transition: .5s ease-in-out;
+}
+
+/***************************************  New  ***********************************************/
+
+.new_container {
+  height: 130vh;
+}
+
+.new_container > div:last-child {
+  position: relative;
+}
+
+/********  Form   ***********/
+
+.form_div {
+  position: absolute;
+  left: 51.5vw;
+  top: -150vh;
+  width: 40vw;
+}
+
+.form_div > div > h1 {
+  position: relative;
+  top: 10vh;
+}
+
+.formulario {
+  width: 45vw;
+  margin-left: 3vw;
+  margin-top: 20vh;
+}
+
+#file {
+  width: 35vw;
+  margin-left: 3vw;
+  margin-top: 1vh;
+}
+
+#firma {
+  margin-left: 3vw;
+  width: 35vw;
+  margin-top: 1.5vh;
+}
+
+#title {
+  margin-left: 3vw;
+  width: 35vw;
+  margin-top: 1.5vh;
+}
+
+.container > div > textarea {
+  margin-left: 3vw;
+  width: 35vw;
+  margin-top: 1.5vh;
+}
+
+.container > label {
+  font-size: 2vw;
+}
+
+.container > div > label {
+  width: 8vw;
+  font-size: 2vw;
+}
+
+.btn_div {
+  width: 10vw;
+  margin-left: 17vw;
+  margin-top: 5.5vh;
+}
+
+.btnSubmit {
+  width: 10vw;
+  height: 7vh;
+  font-size: 2vw;
+}
+
+.formulario > div > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.formulario > div > div > div {
+  width: 20vw;
+}
+
+.formulario > div > div > div > label:first-child {
+  margin-left: 3vw;
+}
+
+.formulario > div > div > div > label:last-child {
+  margin-left: 1vw;
+}
+
+.formulario > div > div > div > select {
+  margin-left: 1vw;
+  margin-top: 2vh;
+  height: 4vh;
+}
+
+.formulario > div > div > div > input {
+  margin-left: 1vw;
+  margin-top: 2vh;
+  height: 4vh;
+}
+
+
+/************  CARD   ********/
+
+.card {
+  position: relative;
+  width: 597px;
+  margin-left: 5vw;
+  height: 152vh;
+  top: 10vh;
+}
+
+.card > h1 {
+  background-color: rgb(185, 196, 87);
+  text-align: center;
+  font-size: 1.5vw;
+  position: relative;
+  top: 0.5vw;
+  width: 30%;
+  border-radius: 3px;
+  padding: 1px 0 4px 0;
+  margin-left: 35%;
+}
+
+.card_page {
+  width: 595.5px;
+  height: 841px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.divTitle {
+  display: flex;
+  position: absolute;
+  top: 220px;
+  width: 495px;
+  left: 50px;
+  justify-content: center;
+}
+
+.titles {
+  width: 495px;
+  position: relative;
+  word-spacing: 5px;
+  text-align: center;
+}
+
+.divBody {
+  position: relative;
+  width: 100%;
+  left: 50px;
+  top: 15vw;
+}
+
+.body {
+  font-size: 15.5px;
+  line-height: 15px;
+  width: 495px;
+  white-space: pre-wrap;
+  word-spacing: 5px;
+}
+
+.divLogo {
+  display: flex;
+  position: relative;
+  top: 25px;
+  width: 495px;
+  left: 50px;
+}
+
+.logo {
+  width: 3vw;
+  position: relative;
+}
+
+#divFirmasCard {
+  position: absolute;
+}
+
+.divFirmaCardSecond {
+  width: 495px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-left: 20px;
+  height: 200px;
+}
+
+.divFirmaCardSecond > div {
+  width: 200px;
+  margin-top: -3vw;
+}
+
+.divFirmaCardSecond > div > p {
+  font-size: 15px;
+  position: relative;
+  top: -2.5vh;
+  text-align: center;
+  margin-bottom: 9vh;
+  white-space: pre-wrap;
+  margin-left: 35px;
+  word-spacing: 3px;
+}
+
+hr {
+  margin-left: 1.5vw;
+  border: 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  height: 0;
+  width: 200px;
+}
+
+.divBtnPdf {
+  margin-top: 3vh;
+  width: 100%;
+}
+
+#btnPdf {
+  width: 30%;
+  margin-left: 35%;
+}
+
+/********************************************   Pdf  **********************************************/
+
+/***********   Form  ************/
+
+#divViewPdfForm {
+  position: relative;
+  top: 40vh;
+}
+
+.divPdfForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 45vw;
+}
+
+/* #lienzoTitle {
+  position: relative;
+  top: -180px;
+  background-color: brown;
+  z-index: 600;
+}
+
+#lienzo {
+  position: relative;
+  background-color: rgba(117, 117, 168, 0.678);
+  z-index: 900;
+}
+ */
+.divPdfForm > div {
+  width: 18vw;
+}
+
+.labelPdfForm {
+  width: 10vw;
+  margin-top: 1vh;
+  margin-left: 2vw;
+  font-size: 3vh;
+}
+
+.inputPdfForm {
+  width: 20vw;
+  margin-left: 1vw;
+  margin-bottom: .5vh;
+  overflow: auto;
+  height: 4vh;
+}
+
+#divFirmas {
+  width: 37vw;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  left: 6vw;
+  top: 1vh;
+}
+
+#divFirmas > div {
+  width: 16vw;
+  margin-top: 0.5vh;
+  margin-left: 1vw;
+}
+
+#divFirmas > div > label {
+  margin-left: 0.7vw;
+}
+
+#divFirmas > div > textarea {
+  width: 15.5vw;
+  margin-left: 1vw;
+}
+
+.public {
+  background-color: rgb( 89, 151, 212 );
+  color: rgb(  237, 240, 243  );
+}
+
+#imgCard:hover {
+  border-style: solid;
+  border-width: .1px;
+}
+
+#divFechaLocationCard:hover {
+  border-style: solid;
+  border-width: .1px;
+}
+
+#titleCard:hover {
+  border-style: solid;
+  border-width: .1px;
+}
+
+#bodyCard:hover {
+  border-style: solid;
+  border-width: .1px;
+}
+
+#divFirmasCard:hover {
+  border-style: solid;
+  border-width: .1px;
+}
+
+/***************  LOGIN    ******************/
+
+.formLogin {
+  position: relative;
+  width: 40vw;
+  height: 45vh;
+  top: 20vh;
+  left: 30vw;
+  background-color: rgb(104, 152, 184);
+  border-radius: 5px;
+}
+
+.formLogin > div > label {
+  width: 20vw;
+  position: relative;
+  left: 10vw;
+  font-size: 2.5vw;
+  text-align: center;
+}
+
+.formLogin > div > input {
+  width: 30vw;
+  position: relative;
+  left: 5vw;
+  font-size: 2vw;
+}
+
+.formLogin > button {
+  position: relative;
+  left: 15vw;
+  width: 10vw;
+  top: 2vh;
+}
+
+.divFailLog {
+  position: relative;
+  top: 26vh;
+  left: 35vw;
+  width: 40vw;
+  z-index: 10;
+  transition: .5s ease;
+  z-index: -10;
+}
+
+.failLog {
+  font-size: 1.8vw;
+  width: 30vw;
+  text-align: center;
+  background-color: crimson;
+  border-radius: 5px 5px 0 0;
+}
+
+.divFailLog.is-active {
+  top: 21.5vh;
+  transition: .5s ease; 
+}
+
+/**************  User Team  ************/
+
+.listTeamCard {
+  position: relative;
+  left: 25vw;
+  width: 40vw;
+  top: 4vh;
+}
+
+.listTeamCard > div > button {
+  width: 50vw;
+  text-align: center;
+  background-color: darkgray;
+  height: 6.3vh;
+  font-size: 4vh;
+}
+
+.listTeamCard > div > button:hover{
+  background-color: rgb(37, 91, 172);
+}
+
+.listTeamCard > div > div {
+  position: relative;
+  top: .3vh;
+}
+
+
+.divCardUser {
+  position: relative;
+  left: 3vw;
+  width: 44vw;
+  background-color: rgb(106, 161, 149);
+  top: .5vh;
+  padding-left: 2vw;
+  border-radius: 5px;
+}
+
+.divCardUser > h2 {
+  font-size: 2vw;
+  height: 6vh;
+}
+
+/*********  Modal  *********/
+
+.titleModal {
+  font-size: 2vw;
+  margin-left: 13.5vw;
+}
+
+.labelModal {
+  font-size: 1.5vw;
+  margin-left: 3vw;
+  margin-right: 1.5vw;
+}
+
+.inputModal {
+  width: 18vw;
+  text-align: center;
+}
+
+#btnModalClose {
+  height: 6vh;
+  width: 5vw;
+  font-size: 1.3vw;
+  background-color: silver;
+}
+
+#btnModalClose:hover {
+  background-color: rgb(126, 59, 59);
+  color: aliceblue;
+}
+
+#btnModal {
+  height: 7vh;
+  width: 6vw;
+  font-size: 1.3vw;
+  background-color: silver;
+}
+
+#btnModal:hover {
+  background-color: rgb(37, 91, 172);
+  color: aliceblue;
+}
+
+.headerModal {
+  background-color: whitesmoke;
+  height: 8vh;
+}
+
+.bodyModal {
+  background-color: rgb(230, 225, 230);
+}
+
+.footModal {
+  height: 11vh;
+  background-color: whitesmoke;
+}
+
+#buscador {
+  width: 34vw;
+}
+
+#divBuscador {
+  background-color: coral;
+  height: 17.5vh;
+}
+
+.btnBuscador {
+  width: 30vw;
+  position: relative;
+  left: 2vw;
+  top: 1vh;
+  padding: 3px;
+  margin: 1px;
+  transition: 10s ease-in-out;
+}
+
+.btnBuscador:hover {
+  background-color: cadetblue;
+}
+
+#divBuscadorPdf {
+  position: relative;
+  top: 30vh;
+}
+
+.version{
+  position: absolute;
+  width: 100vw;
+  bottom: 0;
+}
+
+.version > h1 {
+  font-size: 1vw;
+  width: 100%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
