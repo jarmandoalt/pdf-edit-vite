@@ -10,20 +10,18 @@ import {
 import ListPdf from "../UserComponents/ListPdf";
 import Loader from "../HomeComponents/Loader";
 import { useSelector, useDispatch } from "react-redux";
-
+import Cookies from "universal-cookie";
 
 const User = () => {
   const [listPdfPublic, setListPdfPublic] = useState([]),
     [listPdfPrivate, setListPdfPrivate] = useState([]),
     [listPdfTeam, setListPdfTeam] = useState([]),
     [isLoader, setIsLoader] = useState(true),
-    { dbDataUsers } = useSelector((state) => state.crud)
-    let {
-      idUser,
-      name,
-      lastname,
-      nameTeam
-    } = dbDataUsers
+    cookies = new Cookies(),
+    idUser = cookies.get("id"),
+    nameTeam = cookies.get("team"),
+    name = cookies.get("name"),
+    lastname = cookies.get("lastname");
 
   useEffect(() => {
     loadPdfPrivate();

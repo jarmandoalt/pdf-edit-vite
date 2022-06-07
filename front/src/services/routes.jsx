@@ -100,32 +100,27 @@ export async function getPayRoll () {
 
 export async function savePdf (productData) {
     try {
-      const formData = new FormData()
+      const formData = new FormData(),
+        valueTitle = `${productData.dbNewPdf.valueTitle} ${productData.dbNewPdf.valueSizeTitle} ${productData.dbNewPdf.valueStyleTextTitle} ${productData.dbNewPdf.valueFontFamilyTitle}`,
+        valueBody = `${productData.dbNewPdf.valueBody} ${productData.dbNewPdf.valueSizeBody} ${productData.dbNewPdf.valueStyleTextBody} ${productData.dbNewPdf.valueFontFamilyBody}`,
+        valueFirmas = `${productData.dbNewPdf.valueFirmas} ${productData.dbNewPdf.valueSizeFirmas} ${productData.dbNewPdf.valueStyleTextFirmas} ${productData.dbNewPdf.valueFontFamilyFirmas}`,
+        valueLocation = `${productData.dbNewPdf.valueLocation} ${productData.dbNewPdf.valueSizeLocation} ${productData.dbNewPdf.valueStyleTextLocation} ${productData.dbNewPdf.valueFontFamilyLocation}`,
+        valueImg = `${productData.dbNewPdf.valueImg} ${productData.dbNewPdf.valueSizeImg}`
 
-      formData.append('title', productData.title)
-      formData.append('posTitle', productData.posTitle)
-      formData.append('sizeTitle', productData.sizeTitle)
-      formData.append('body', productData.body)
-      formData.append('posImg', productData.posImg)
-      formData.append('numFirmas', productData.numFirmas)
-      formData.append('sizeImg', productData.sizeImg)
-      formData.append('image', productData.image)
-      formData.append('firma', productData.firma)
-      formData.append('access', productData.access)
-      formData.append('idaccess', productData.idaccess)
-      formData.append('team', productData.team)
-      formData.append('valueName', productData.valueName)
-      formData.append('valueNomina', productData.valueNomina)
-      formData.append('valueFechaIngreso', productData.valueFechaIngreso)
-      formData.append('valueFechaSalida', productData.valueFechaSalida)
-      formData.append('valuePuesto', productData.valuePuesto)
-      formData.append('valueFecha', productData.valueFecha)
-      formData.append('date', productData.date)
-      formData.append('imgX', productData.imgX)
-      formData.append('imgY', productData.imgY)
-      formData.append('imgW', productData.imgW)
-      formData.append('imgH', productData.imgH)
-      formData.append('imgScroll', productData.imgScroll)
+
+      formData.append('title', productData.dbNewPdf.title)
+      formData.append('body', productData.dbNewPdf.body)
+      formData.append('numFirmas', productData.dbNewPdf.numFirmas)
+      formData.append('imgUrl', productData.dbNewPdf.urlImg)
+      formData.append('firma', productData.dbNewPdf.firma)
+      formData.append('access', productData.dbNewPdf.access)
+      formData.append('idaccess', productData.dbNewPdf.idaccess)
+      formData.append('team', productData.dbNewPdf.team)
+      formData.append('valueTitle', valueTitle)
+      formData.append('valueImg', valueImg)
+      formData.append('valueBody', valueBody)
+      formData.append('valueFirmas', valueFirmas)
+      formData.append('valueLocation', valueLocation)
        
       const response = await Axios({
         url: `${baseUrl}/v1/new`,

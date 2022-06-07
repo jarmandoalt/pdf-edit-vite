@@ -4,6 +4,7 @@ import { NEW_DATA_USERS } from "../reducer/crudReducer";
 import { useSelector, useDispatch } from "react-redux";
 import Header from "../HomeComponents/Header";
 import { useNavigate } from "react-router-dom"
+import Cookies from "universal-cookie";
 
 function Login() {
   const [formValues, setFormValues] = useState({
@@ -19,9 +20,9 @@ function Login() {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const baseUrl = "http://localhost:8000"
-
-  const $failLog = document.getElementById('divFailLog')
+  const baseUrl = "http://localhost:8000",
+    $failLog = document.getElementById('divFailLog'),
+    cookies = new Cookies();
 
   const getUser = async (e) => {
     e.preventDefault();
@@ -38,13 +39,12 @@ function Login() {
       .then((response) => {
         if (response.users.length > 0) {
           let data = response.users[0];
-          let { _id, name, lastname, username, team } = data;
 
-          dispatch(NEW_DATA_USERS({ titulo: "id", valor: _id }));
-          dispatch(NEW_DATA_USERS({ titulo: "name", valor: name }));
-          dispatch(NEW_DATA_USERS({ titulo: "lastname", valor: lastname }));
-          dispatch(NEW_DATA_USERS({ titulo: "username", valor: username }));
-          dispatch(NEW_DATA_USERS({ titulo: "team", valor: team }));
+          cookies.set("id", data._id, { path: "/" });
+          cookies.set("name", data.name, { path: "/" });
+          cookies.set("lastname", data.lastname, { path: "/" });
+          cookies.set("username", data.username, { path: "/" });
+          cookies.set("team", data.team, { path: "/" });
 
           if (data._id === "629c73dd87690554706ad9f7") {
             navigate("/home/admin");

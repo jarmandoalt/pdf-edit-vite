@@ -1,0 +1,321 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.new_container {
+    height: 130vh;
+}
+
+.new_container>div:last-child {
+    position: relative;
+}
+
+/********  Form   ***********/
+
+.form_div {
+    position: absolute;
+    left: 48vw;
+    top: -164.5vh;
+    width: 40vw;
+}
+
+.form_div>div>h1 {
+    position: relative;
+    top: 10vh;
+}
+
+.formulario {
+    width: 45vw;
+    margin-left: 3vw;
+    margin-top: 20vh;
+}
+
+#menuNav {
+    position: fixed;
+    background-color: #565e68;
+    height: 7vh;
+    display: flex;
+    width: 45vw;
+    justify-content: space-evenly;
+    border-radius: 0 0 5px 5px;
+    z-index: 999;
+}
+
+#buscadorFuente {
+    width: 12vw;
+    height: 3.5vh;
+    margin-top: 1.75vh;
+    background-color: rgb(176, 185, 184);
+    color: white;
+    font-family: Verdana;
+    border-style: none;
+}
+
+#listBtn > button {
+    width: 10vw;
+    margin-left: 2vw;
+    border-radius: 0;
+    background-color: rgb(227, 235, 234);
+    color: rgb(77, 76, 76);
+}
+
+#listBtn > button:hover {
+    background-color: rgb(135, 146, 145);
+    color: whitesmoke;
+}
+
+#divSizeText {
+    width: 15vw;
+    height: 3.5vh;
+    margin-top: 1.75vh;
+
+}
+
+#divSizeText > button {
+    width: 2.5vw;
+    font-family: Verdana;
+}
+
+#divSizeText > span > input {
+    width: 5vw;
+    height: 3.5vh;
+}
+
+#divStyleText {
+    position: absolute;
+    width: 10vw;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1.75vh;
+}
+
+#divStyleText > button {
+    height: 3.5;
+    font-family: Verdana;
+}
+
+/************* Form  *************/
+
+#container {
+    position: absolute;
+    top: 15vh;
+    left: 6vw;
+}
+
+#file {
+    width: 35vw;
+    margin-left: 3vw;
+    margin-top: 1vh;
+}
+
+#firma {
+    margin-left: 3vw;
+    width: 35vw;
+    margin-top: 1.5vh;
+}
+
+#title {
+    margin-left: 3vw;
+    width: 35vw;
+    margin-top: 1.5vh;
+}
+
+#container>div>textarea {
+    margin-left: 3vw;
+    width: 35vw;
+    margin-top: 1.5vh;
+}
+
+#container>label {
+    font-size: 2vw;
+}
+
+#container>div>label {
+    width: 8vw;
+    font-size: 2vw;
+    font-family: verdana;
+}
+
+
+.btnSubmit {
+    width: 10vw;
+    height: 7vh;
+    font-size: 2vw;
+}
+
+.formulario>div>div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.formulario>div>div>div {
+    width: 20vw;
+}
+
+.formulario>div>div>div>label:first-child {
+    margin-left: 3vw;
+}
+
+.formulario>div>div>div>label:last-child {
+    margin-left: 1vw;
+}
+
+.formulario>div>div>div>select {
+    margin-left: 1vw;
+    margin-top: 2vh;
+    height: 4vh;
+}
+
+.formulario>div>div>div>input {
+    margin-left: 1vw;
+    margin-top: 2vh;
+    height: 4vh;
+}
+
+#divBtnBody {
+    display: flex;
+
+}
+
+#divBtnBody > h2 {
+    font-family: verdana;
+    font-size: 2vw;
+    justify-content: space-evenly;
+}
+
+#divBtnBody > div {
+    width: 12vw;
+    margin-left: .60vw;
+    margin-bottom: 5px;
+}
+
+#divBtnBody > div > button {
+    width: 12vw;
+    font-family: verdana;
+    font-size: 1vw;
+}
+
+
+/************  CARD   ********/
+
+.card {
+    position: relative;
+    width: 597px;
+    margin-left: 5vw;
+    height: 152vh;
+    top: 10vh;
+}
+
+.card>h1 {
+    background-color: rgb(185, 196, 87);
+    text-align: center;
+    font-size: 1.5vw;
+    position: relative;
+    top: 0.5vw;
+    width: 30%;
+    border-radius: 3px;
+    padding: 1px 0 4px 0;
+    margin-left: 35%;
+}
+
+.card_page {
+    width: 595.5px;
+    height: 841px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.divTitle {
+    display: flex;
+    position: absolute;
+    top: 220px;
+    width: 495px;
+    left: 50px;
+    justify-content: center;
+}
+
+.titles {
+    width: 495px;
+    position: relative;
+    word-spacing: 5px;
+    text-align: center;
+}
+
+.divBody {
+    position: relative;
+    width: 100%;
+    left: 50px;
+    top: 15vw;
+}
+
+.body {
+    font-size: 15.5px;
+    line-height: 15px;
+    width: 495px;
+    white-space: pre-wrap;
+    word-spacing: 5px;
+}
+
+.divLogo {
+    display: flex;
+    position: relative;
+    top: 25px;
+    width: 495px;
+    left: 50px;
+}
+
+.logo {
+    width: 3vw;
+    position: relative;
+}
+
+#divFirmasCard {
+    position: absolute;
+}
+
+.divFirmaCardSecond {
+    width: 495px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    height: 200px;
+}
+
+.divFirmaCardSecond>div {
+    width: 200px;
+    margin-top: -3vw;
+}
+
+.divFirmaCardSecond>div>p {
+    font-size: 15px;
+    position: relative;
+    top: -2.5vh;
+    text-align: center;
+    margin-bottom: 9vh;
+    white-space: pre-wrap;
+    margin-left: 35px;
+    word-spacing: 3px;
+}
+
+hr {
+    margin-left: 1.5vw;
+    border: 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    height: 0;
+    width: 200px;
+}
+
+.divBtnPdf {
+    margin-top: 3vh;
+    width: 100%;
+}
+
+#btnPdf {
+    width: 30%;
+    margin-left: 35%;
+}

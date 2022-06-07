@@ -3,14 +3,12 @@ import HeaderSignOff from "../HomeComponents/HeaderSignOff";
 import ListTeams from "../AdminComponents/ListTeams";
 import AddTeamBtn from "../AdminComponents/AddTeamBtn";
 import { useSelector, useDispatch } from "react-redux";
+import Cookies from "universal-cookie";
 
 function Admin() {
-  const { dbDataUsers } = useSelector((state) => state.crud)
-
-  let {
-    username,
-    id
-  } = dbDataUsers
+  const cookies = new Cookies(),
+    username = `${cookies.get("username")}`,
+    id = `${cookies.get("id")}`;
 
   const reload = () => {
     console.log("reload");

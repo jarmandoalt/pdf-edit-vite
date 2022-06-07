@@ -1,7 +1,10 @@
-import { createRef, useState } from "react";
+import { createRef, useState, useEffect } from "react";
 import { NEW_PDF } from "../reducer/crudReducer";
 import { useSelector, useDispatch } from "react-redux";
-import arrowLeft from "../Sources/arrow-up-left.png";
+import "./index.css";
+import Cookies from "universal-cookie";
+import {OverlayTrigger, Button, Tooltip} from 'react-bootstrap'
+import { savePdf } from "../services/routes";
 
 const Forms = () => {
   const { dbNewPdf, dbFonts } = useSelector((state) => state.crud),
@@ -17,16 +20,16 @@ const Forms = () => {
     refValueFecha = createRef(),
     refValueFechaLocation = createRef(),
     refBuscador = createRef(),
-    { dbDataUsers } = useSelector((state) => state.crud)
-
-    let {
-      nameTeam
-    } = dbDataUsers
-  
+    refStyleTextIzq = createRef(),
+    refStyleTextDer = createRef(),
+    refStyleTextCen = createRef(),
+    refBody = createRef(),
+    cookies = new Cookies(),
+    nameTeam = cookies.get("team");
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
-    //handleSubmit();
+    savePdf({ dbNewPdf });
     //history.push("/home/user");
   };
 
@@ -67,33 +70,6 @@ const Forms = () => {
       dispatch(NEW_PDF({ titulo: "urlImg", valor: reader.result }));
     };
   };
-
-
-  /* const selectTitle = (e) => {
-    e.preventDefault();
-    const $zIndexTitle = document.getElementById("divCanvasTitle");
-    const $zIndexImg = document.getElementById("divCanvasImg");
-    $zIndexImg.style.zIndex = "500";
-    $zIndexImg.style.background = "white";
-    $zIndexTitle.style.zIndex = "999";
-    $zIndexTitle.style.background = "rgba (115, 129, 146, 0.2)";
-    console.log("index Title");
-    const editImg = "editTitle",
-    number = 1;
-  editPosition(editImg, number);
-  }; */
-
-  /* const selectImg = (e) => {
-    e.preventDefault()
-    const $zIndexImg = document.getElementById('divCanvasImg')
-    const $zIndexTitle = document.getElementById('divCanvasTitle')
-    $zIndexTitle.style.zIndex = '500'
-    $zIndexTitle.style.background = 'white'
-    $zIndexImg.style.zIndex = '999'
-    $zIndexImg.style.background = 'rgba (115, 129, 146, 0.2)'
-    console.log('index IMG'); 
-      editPosition()
-  } */
 
   const onChange = (e) => {
     e.preventDefault();
@@ -279,22 +255,7 @@ const Forms = () => {
     }
   };
 
-  const selectSize = async () => {
-    let value = dbNewPdf.valueSize,
-      arrSize = [
-        "valueSizeImg",
-        "valueSizeTitle",
-        "valueSizeBody",
-        "valueSizeFirmas",
-        "valueSizeLocation",
-      ];
-
-    for (let index = 0; index < arrSize.length; index++) {
-      if (index == dbNewPdf.selectObj) {
-        dispatch(NEW_PDF({ titulo: arrSize[index], valor: value }));
-      }
-    }
-  };
+  const selectSize = async () => {};
 
   const addValueSize = (e) => {
     e.preventDefault();
@@ -302,16 +263,27 @@ const Forms = () => {
       dispatch(NEW_PDF({ titulo: "valueSize", valor: dbNewPdf.valueSize + 1 }));
     }
     let arrSize = [
-        "valueSizeImg",
-        "valueSizeTitle",
-        "valueSizeBody",
-        "valueSizeFirmas",
-        "valueSizeLocation",
-      ];
+      "valueSizeImg",
+      "valueSizeTitle",
+      "valueSizeBody",
+      "valueSizeFirmas",
+      "valueSizeLocation",
+    ];
 
     for (let index = 0; index < arrSize.length; index++) {
       if (index == dbNewPdf.selectObj) {
-        dispatch(NEW_PDF({ titulo: arrSize[index], valor: ((dbNewPdf.valueSize + 1) * 10) }));
+        if (index == 0) {
+          dispatch(
+            NEW_PDF({
+              titulo: arrSize[index],
+              valor: (dbNewPdf.valueSize + 1) * 10,
+            })
+          );
+        } else {
+          dispatch(
+            NEW_PDF({ titulo: arrSize[index], valor: dbNewPdf.valueSize + 1 })
+          );
+        }
       }
     }
   };
@@ -323,24 +295,172 @@ const Forms = () => {
     }
 
     let arrSize = [
-        "valueSizeImg",
-        "valueSizeTitle",
-        "valueSizeBody",
-        "valueSizeFirmas",
-        "valueSizeLocation",
-      ];
+      "valueSizeImg",
+      "valueSizeTitle",
+      "valueSizeBody",
+      "valueSizeFirmas",
+      "valueSizeLocation",
+    ];
 
     for (let index = 0; index < arrSize.length; index++) {
       if (index == dbNewPdf.selectObj) {
-        dispatch(NEW_PDF({ titulo: arrSize[index],  valor: ((dbNewPdf.valueSize - 1) * 10) }));
+        if (index == 0) {
+          dispatch(
+            NEW_PDF({
+              titulo: arrSize[index],
+              valor: (dbNewPdf.valueSize - 1) * 10,
+            })
+          );
+        } else {
+          dispatch(
+            NEW_PDF({ titulo: arrSize[index], valor: dbNewPdf.valueSize - 1 })
+          );
+        }
+      }
+    }
+  };
+
+  //Escuchando la orientacion del texto seleccionado
+  useEffect(() => {
+    selectStyleTextBtn();
+  }, [dbNewPdf.valueStyleText]);
+
+  const arrStyleText = [
+      "valueStyleTextImg",
+      "valueStyleTextTitle",
+      "valueStyleTextBody",
+      "valueStyleTextFirmas",
+      "valueStyleTextLocation",
+    ],
+    arrValueStyleText = ["start", "center", "end"],
+    arrRefStyleText = [refStyleTextIzq, refStyleTextCen, refStyleTextDer];
+
+  const selectStyleTextBtn = () => {
+    for (let index = 0; index < arrValueStyleText.length; index++) {
+      if (dbNewPdf.valueStyleText == arrValueStyleText[index]) {
+        arrRefStyleText[index].current.style.backgroundColor =
+          "rgb( 89, 151, 212 )";
+        arrRefStyleText[index].current.style.color = "rgb(  237, 240, 243  )";
+      } else {
+        arrRefStyleText[index].current.style.backgroundColor =
+          "rgb( 237, 240, 243 )";
+        arrRefStyleText[index].current.style.color = "rgb(  13, 17, 22  )";
+      }
+    }
+  };
+
+  const clickBtnStyleText = (e) => {
+    e.preventDefault();
+
+    for (let i = 0; i < arrStyleText.length; i++) {
+      for (let j = 0; j < arrValueStyleText.length; j++) {
+        if (i == dbNewPdf.selectObj && j == e.target.slot) {
+          console.log(i, j);
+          dispatch(
+            NEW_PDF({ titulo: arrStyleText[i], valor: arrValueStyleText[j] })
+          );
+        }
+      }
+    }
+
+    for (let index = 0; index < arrRefStyleText.length; index++) {
+      if (index == e.target.slot) {
+        console.log("mando");
+        arrRefStyleText[index].current.style.backgroundColor =
+          "rgb( 89, 151, 212 )";
+        arrRefStyleText[index].current.style.color = "rgb(  237, 240, 243  )";
+      } else {
+        arrRefStyleText[index].current.style.backgroundColor =
+          "rgb( 237, 240, 243 )";
+        arrRefStyleText[index].current.style.color = "rgb(  13, 17, 22  )";
+      }
+    }
+  };
+
+  //Escuchar valor de botones body
+  useEffect(() => {
+    addWordBody();
+  }, [
+    dbNewPdf.valueName,
+    dbNewPdf.valueNomina,
+    dbNewPdf.valueFechaIngreso,
+    dbNewPdf.valueFechaSalida,
+    dbNewPdf.valuePuesto,
+    dbNewPdf.valueFecha,
+  ]);
+
+  const addWordBody = () => {
+    const arrValueBtnBody = [
+      dbNewPdf.valueName,
+      dbNewPdf.valueNomina,
+      dbNewPdf.valueFechaIngreso,
+      dbNewPdf.valueFechaSalida,
+      dbNewPdf.valuePuesto,
+      dbNewPdf.valueFecha,
+    ];
+
+    const arrValueWord = [
+      "Nombre",
+      "Nomina",
+      "Ingreso",
+      "Baja",
+      "Puesto",
+      "Fecha",
+    ];
+
+    const arrValueDb = [
+      "valueName",
+      "valueNomina",
+      "valueFechaIngreso",
+      "valueFechaSalida",
+      "valuePuesto",
+      "valueFecha",
+    ];
+
+    for (let index = 0; index < arrValueBtnBody.length; index++) {
+      if (arrValueBtnBody[index] == 1) {
+        console.log("dentro");
+        let palabra = `${dbNewPdf.body} (${arrValueWord[index]})`;
+        refBody.current.value = palabra;
+        dispatch(
+          NEW_PDF({
+            titulo: "body",
+            valor: `${dbNewPdf.body} (${arrValueWord[index]})`,
+          })
+        );
+        dispatch(NEW_PDF({ titulo: arrValueDb[index], valor: "0" }));
       }
     }
   };
 
   return (
     <form className="formulario">
-      <div>
-        <div>
+      <div id="menuNav">
+        <div id="divBuscadorFuente" ref={refBuscador}>
+          <div>
+            <input
+              type="text"
+              name="busqueda"
+              placeholder="Fuente"
+              value={busqueda}
+              id="buscadorFuente"
+              onChange={handleBusqueda}
+            />
+          </div>
+          <div id="listBtn">
+            {arialSelect.map(({ name, id }) => (
+              <button
+                className="selectListBtn"
+                onClick={selectFontFamily}
+                value={name}
+                style={{ fontFamily: `${name}` }}
+              >
+                {name}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div id="divSizeText">
           <button onClick={subtractSize}> - </button>
           <span>
             <input
@@ -356,33 +476,19 @@ const Forms = () => {
           </span>
           <button onClick={addValueSize}> + </button>
         </div>
-        <div className="divBuscador" ref={refBuscador}>
-          <div>
-            <input
-              type="text"
-              name="busqueda"
-              className="buscador"
-              placeholder="Buscar por nombre"
-              value={busqueda}
-              id="buscador"
-              onChange={handleBusqueda}
-            />
-          </div>
-          <div className="listPokemon">
-            {arialSelect.map(({ name, id }) => (
-              <button
-                className="selectPokemon"
-                onClick={selectFontFamily}
-                value={name}
-                style={{ fontFamily: `${name}` }}
-              >
-                {name}
-              </button>
-            ))}
-          </div>
+        <div id="divStyleText">
+          <button onClick={clickBtnStyleText} slot={0} ref={refStyleTextIzq}>
+            izq
+          </button>
+          <button onClick={clickBtnStyleText} slot={1} ref={refStyleTextCen}>
+            cen
+          </button>
+          <button onClick={clickBtnStyleText} slot={2} ref={refStyleTextDer}>
+            der
+          </button>
         </div>
       </div>
-      <div className="container">
+      <div id="container">
         <label htmlFor="img"> Imagen</label>
         <div className="img">
           <input type="file" id="file" onChange={images} />
@@ -413,10 +519,18 @@ const Forms = () => {
         <div>
           <input type="text" id="title" name="title" onChange={onChange} />
         </div>
-        <div id="divBody">
-          <h2>
-            Selecciona las opciones que usaras y escribela tal cual en el BODY{" "}
-          </h2>
+        <label>Cuerpo</label>
+        <OverlayTrigger
+          overlay={<Tooltip id="tooltip-disabled"> {`Presiona el boton de la variable que desees usar, si 
+          tu variable no esta en las opciones escribela entre parentesis. eje: (motivo)`} </Tooltip>}
+        >
+          <span className="d-inline-block">
+            <Button disabled style={{ pointerEvents: "none" }}>
+              I
+            </Button>
+          </span>
+        </OverlayTrigger>
+        <div id="divBtnBody">
           <div>
             <button
               type="checkbox"
@@ -450,7 +564,7 @@ const Forms = () => {
               ref={refValueFechaIngreso}
             >
               {" "}
-              Ingreso{" "}
+              Fecha de Ingreso{" "}
             </button>
           </div>
           <div>
@@ -462,7 +576,7 @@ const Forms = () => {
               ref={refValueFechaSalida}
             >
               {" "}
-              Baja{" "}
+              Fecha de Baja{" "}
             </button>
           </div>
           <div>
@@ -489,21 +603,22 @@ const Forms = () => {
               Fecha{" "}
             </button>
           </div>
+        </div>
+        <div>
           <div>
-            <label htmlFor="text">Cuerpo</label>
-            <div>
-              <textarea
-                type="text"
-                id="Body"
-                name="body"
-                cols="50"
-                rows="5"
-                title="El Body es requerido"
-                onChange={onChange}
-              />
-            </div>
+            <textarea
+              type="text"
+              id="Body"
+              name="body"
+              cols="50"
+              rows="5"
+              ref={refBody}
+              title="El Body es requerido"
+              onChange={onChange}
+            />
           </div>
         </div>
+
         <label htmlFor="text">No. Firmas</label>
         <div>
           <input
@@ -515,6 +630,8 @@ const Forms = () => {
             max="5"
           />
         </div>
+        <div>
+          <h2>Elige la privacidad</h2>
         <button
           ref={refAccess}
           onClick={onChange}
@@ -536,16 +653,13 @@ const Forms = () => {
           {" "}
           {nameTeam}{" "}
         </button>
-      </div>
-
-      <div className="btn_div">
+        </div>
+        <div className="divBtnOk">
         <button className="btnRoot" onClick={_handleSubmit}>
           Agregar
         </button>
       </div>
-      <br />
-      <br />
-      <br />
+      </div>
     </form>
   );
 };

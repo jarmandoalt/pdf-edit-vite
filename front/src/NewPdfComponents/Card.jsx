@@ -2,6 +2,7 @@ import { createRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Draggable from "react-draggable";
 import { NEW_PDF } from "../reducer/crudReducer";
+import './index.css'
 
 const Card = () => {
   /* useEffect(function () { 
@@ -52,7 +53,7 @@ const Card = () => {
           <div className="divFirmaCardSecond" ref={refDragg4} slot={3}>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 ejemplos
               </p>
             </div>
@@ -63,13 +64,13 @@ const Card = () => {
           <div ref={refDragg4} slot={3} className="divFirmaCardSecond">
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
@@ -80,19 +81,19 @@ const Card = () => {
           <div className="divFirmaCardSecond" ref={refDragg4} slot={3}>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }}      ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }}      ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
@@ -103,25 +104,25 @@ const Card = () => {
           <div className="divFirmaCardSecond" ref={refDragg4} slot={3}>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
@@ -132,31 +133,31 @@ const Card = () => {
           <div className="divFirmaCardSecond" ref={refDragg4} slot={3}>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
             <div ref={refDragg4} slot={3}>
               <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px` }} ref={refDragg4} slot={3}>
+              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
                 xxxxxxxxxxxx
               </p>
             </div>
@@ -171,14 +172,14 @@ const Card = () => {
     switch (valueFechaLocation) {
       case "0":
         return (
-          <h2 style={{ fontFamily: `${dbNewPdf.valueFontFamilyLocation}`, fontSize: `${dbNewPdf.valueSizeLocation}px` }} slot={4} ref={refDragg6}>
+          <h2 style={{ fontFamily: `${dbNewPdf.valueFontFamilyLocation}`, fontSize: `${dbNewPdf.valueSizeLocation}px`, textAlign: `${dbNewPdf.valueStyleTextLocation}` }} slot={4} ref={refDragg6}>
             {location}
           </h2>
         );
       case "1":
         let addFecha = `${location}, (dia) de (mes) de (año)`;
         return (
-          <h2 style={{ fontFamily: `${dbNewPdf.valueFontFamilyLocation}`, fontSize: `${dbNewPdf.valueSizeLocation}px` }} slot={4} ref={refDragg6}>
+          <h2 style={{ fontFamily: `${dbNewPdf.valueFontFamilyLocation}`, fontSize: `${dbNewPdf.valueSizeLocation}px`, textAlign: `${dbNewPdf.valueStyleTextLocation}` }} slot={4} ref={refDragg6}>
             {addFecha}
           </h2>
         );
@@ -201,20 +202,27 @@ const Card = () => {
         arrayRefs[e.target.slot].current
       ),
       data = elementStyle.getPropertyValue("transform"),
-      auxData = data.charAt.d.addFechaa.substring(0, data.length - 1),
+      auxData = data.substring(0, data.length - 1),
       arrData = auxData.split(","),
       stringArr = arrData[4] + arrData[5];
+      stringArr = stringArr.slice(1, -1)
     console.log(stringArr);
     dispatch(NEW_PDF({ titulo: arrayState[e.target.slot], valor: stringArr }));
   };
 
   const selectContent = (e) => {
     let arrSize = [dbNewPdf.valueSizeImg, dbNewPdf.valueSizeTitle, dbNewPdf.valueSizeBody, dbNewPdf.valueSizeFirmas, dbNewPdf.valueSizeLocation]
+    let arrStyleText = [dbNewPdf.valueStyleTextImg, dbNewPdf.valueStyleTextTitle, dbNewPdf.valueStyleTextBody, dbNewPdf.valueStyleTextFirmas, dbNewPdf.valueStyleTextLocation]
     for (let index = 0; index < arrayRefs.length; index++) {
       if (index == e.target.slot) {
         arrayRefs[index].current.style.border = "solid .1px black";
         dispatch(NEW_PDF({ titulo: "selectObj", valor: index }));
-        dispatch(NEW_PDF({ titulo: "valueSize", valor: arrSize[index]/10 })); 
+        if (index == 0) { //por si select esta en la img
+          dispatch(NEW_PDF({ titulo: "valueSize", valor: arrSize[index]/10 }));           
+        }else {
+          dispatch(NEW_PDF({ titulo: "valueSize", valor: arrSize[index] }));
+          dispatch(NEW_PDF({ titulo: "valueStyleText", valor: arrStyleText[index] }));
+        } 
       } else {
         arrayRefs[index].current.style.borderStyle = "none";
       }
@@ -249,10 +257,11 @@ const Card = () => {
               id="imgCard"
               src={urlImg}
               width="80px"
-              alt=""
               slot={0}
+              draggable={false}
               style={{width: `${dbNewPdf.valueSizeImg}px`}}
             />
+            
           </Draggable>
           <Draggable
             onStart={selectContent}
@@ -269,7 +278,7 @@ const Card = () => {
             defaultPosition={{ x: 195, y: 195 }}
           >
             <h1
-              style={{ fontFamily: `${dbNewPdf.valueFontFamilyTitle}`, fontSize: `${dbNewPdf.valueSizeTitle}px` }}
+              style={{ fontFamily: `${dbNewPdf.valueFontFamilyTitle}`, fontSize: `${dbNewPdf.valueSizeTitle}px`, textAlign: `${dbNewPdf.valueStyleTextTitle}` }}
               id="titleCard"
               ref={refDragg2}
               slot={1}
@@ -280,9 +289,9 @@ const Card = () => {
           <Draggable
             onStart={selectContent}
             onStop={getPosition}
-            defaultPosition={{ x: 20, y: 235 }}
+            defaultPosition={{ x: 50, y: 235 }}
           >
-            <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyBody}`, fontSize: `${dbNewPdf.valueSizeBody}px` }} id="bodyCard" className="body" ref={refDragg3} slot={2}>
+            <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyBody}`, fontSize: `${dbNewPdf.valueSizeBody}px`, textAlign: `${dbNewPdf.valueStyleTextBody}`}} id="bodyCard" className="body" ref={refDragg3} slot={2}>
               {body}
             </p>
           </Draggable>

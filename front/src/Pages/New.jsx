@@ -2,47 +2,15 @@ import { useState, useRef } from "react";
 import Forms from "../NewPdfComponents/Form";
 import Header from "../HomeComponents/Header";
 import Card from "../NewPdfComponents/Card";
-import { savePdf } from "../services/routes";
+import Cookies from "universal-cookie";
 import { useSelector, useDispatch } from "react-redux";
 
 const New = (e) => {
   const fileRef = useRef(),
-  { dbDataUsers } = useSelector((state) => state.crud)
-  
-  let {
-    idUser,
-    name,
-    lastname,
-    nameTeam
-  } = dbDataUsers
-
-  
-  /* const handleSubmit = () => {
-    savePdf({ ...formValues, image: fileRef.current.files[0] });
-  };
-
-  const handleImg = (img, valueScroll) => {
-    const { x, y, h, w } = img;
-    setFormValues({
-      ...formValues,
-      imgX: x,
-      imgY: y,
-      imgW: w,
-      imgH: h,
-      imgScroll: valueScroll,
-    });
-  };
-
-  const sendUrl = (name, value) => {
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
-  const editPosition = (name, value) => {
-    setFormValues({ ...formValues, editImg: "1" });
-  }; */
+    cookies = new Cookies(),
+    idaccess = cookies.get("id"),
+    team = cookies.get("team"),
+    name = cookies.get("name");
 
   return (
     <>
