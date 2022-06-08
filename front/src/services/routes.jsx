@@ -121,6 +121,13 @@ export async function savePdf (productData) {
       formData.append('valueBody', valueBody)
       formData.append('valueFirmas', valueFirmas)
       formData.append('valueLocation', valueLocation)
+      formData.append('location', productData.dbNewPdf.location)
+      formData.append('date', productData.dbNewPdf.valueFechaLocation)
+      formData.append('nameFirma1', productData.dbNewPdf.nameFirma1)
+      formData.append('nameFirma2', productData.dbNewPdf.nameFirma2)
+      formData.append('nameFirma3', productData.dbNewPdf.nameFirma3)
+      formData.append('nameFirma4', productData.dbNewPdf.nameFirma4)
+      formData.append('nameFirma5', productData.dbNewPdf.nameFirma5)
        
       const response = await Axios({
         url: `${baseUrl}/v1/new`,

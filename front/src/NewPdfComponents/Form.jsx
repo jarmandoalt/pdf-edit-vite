@@ -5,6 +5,7 @@ import "./index.css";
 import Cookies from "universal-cookie";
 import {OverlayTrigger, Button, Tooltip} from 'react-bootstrap'
 import { savePdf } from "../services/routes";
+import { getPayRoll } from "../services/routes";
 
 const Forms = () => {
   const { dbNewPdf, dbFonts } = useSelector((state) => state.crud),
@@ -24,6 +25,14 @@ const Forms = () => {
     refStyleTextDer = createRef(),
     refStyleTextCen = createRef(),
     refBody = createRef(),
+    refFirmas1 = createRef(),
+    refFirmas2 = createRef(),
+    refFirmas3 = createRef(),
+    refFirmas4 = createRef(),
+    refFirmas5 = createRef(),
+    refValueNameFirma = createRef(),
+    refValueNominaFirma = createRef(),
+    refValuePuestoFirma = createRef(),
     cookies = new Cookies(),
     nameTeam = cookies.get("team");
 
@@ -41,12 +50,19 @@ const Forms = () => {
     [btnPuesto, setBtnPuesto] = useState(true),
     [btnFecha, setBtnFecha] = useState(true),
     [btnFechaLocation, setBtnFechaLocation] = useState(true),
+    [btnNameFirma, setBtnNameFirma] = useState(true),
+    [btnNominaFirma, setBtnNominaFirma] = useState(true),
+    [btnPuestoFirma, setBtnPuestoFirma] = useState(true),
     [access, setAccess] = useState(true),
     [idaccess, setIdAccess] = useState(false),
     [team, setTeam] = useState(false),
     [editTitles, setEditTitles] = useState(false),
     [busqueda, setBusqueda] = useState(""),
+    [busquedaFirmas, setBusquedaFirmas] = useState(""),
     [arialSelect, setArialSelect] = useState([]),
+    [nameFirmasSelect, setNameFirmasSelect] = useState([]),
+    [payRoll, setPayRoll] = useState([]),
+    [selectAreaFirmas, setSelectAreaFirmas] = useState(0),
     {
       posImg,
       sizeImg,
@@ -61,6 +77,10 @@ const Forms = () => {
       editBody,
       editDate,
     } = dbNewPdf;
+
+  useEffect(() => {
+    loadPayRoll();
+  }, []);
 
   /************* Movimiento Img ***************/
   const images = (e) => {
@@ -255,7 +275,7 @@ const Forms = () => {
     }
   };
 
-  const selectSize = async () => {};
+  //cambiar tamaño de componentes
 
   const addValueSize = (e) => {
     e.preventDefault();
@@ -433,6 +453,405 @@ const Forms = () => {
     }
   };
 
+  //busqueda nombre de firmas
+  const loadPayRoll = async () => {
+    const response = await getPayRoll();
+    if (response.status === 200) {
+      setPayRoll(response.data.payrolls);
+    }
+  };
+
+  const handleBusquedaFirmas = (e) => {
+    setBusquedaFirmas(e.target.value);
+    filterFirmas(e.target.value);
+  };
+
+  const filterFirmas = (terminoBusqueda) => {
+    let resultFilter = payRoll.filter((elemento) => {
+      if (
+        elemento.name
+          .toString()
+          .toLowerCase()
+          .includes(terminoBusqueda.toLowerCase()) ||
+        elemento.lastname
+          .toString()
+          .toLowerCase()
+          .includes(terminoBusqueda.toLowerCase()) ||
+        elemento.puesto
+          .toString()
+          .toLowerCase()
+          .includes(terminoBusqueda.toLowerCase())
+      ) {
+        return elemento;
+      }
+    });
+    let result = resultFilter;
+    if (resultFilter.length > 2) {
+      result = resultFilter.slice(0, 3);
+    }
+    setNameFirmasSelect(result);
+  };
+
+  const selectNameFirmas = async (e) => {
+    e.preventDefault();
+    const arrValueFirmas = [
+        "nameFirma1",
+        "nameFirma2",
+        "nameFirma3",
+        "nameFirma4",
+        "nameFirma5",
+      ],
+      data = nameFirmasSelect.find(
+        (empleado) => empleado._id == e.target.value
+      ),
+      strData = `${data.name} ${data.lastname} 
+ ${data.puesto}`;
+
+    console.log(selectAreaFirmas);
+
+    for (let index = 0; index < arrValueFirmas.length; index++) {
+      if (selectAreaFirmas == index) {
+        dispatch(NEW_PDF({ titulo: arrValueFirmas[index], valor: strData }));
+      }
+    }
+  };
+
+  const onChangeFirma = (e) => {
+    e.preventDefault();
+    const arrValueFirmas = [
+      "nameFirma1",
+      "nameFirma2",
+      "nameFirma3",
+      "nameFirma4",
+      "nameFirma5",
+    ],
+    arrDbFirmas = [
+      dbNewPdf.nameFirma1,
+      dbNewPdf.nameFirma2,
+      dbNewPdf.nameFirma3,
+      dbNewPdf.nameFirma4,
+      dbNewPdf.nameFirma5,
+    ]
+    let { name, value } = e.target;
+    switch (name) {
+      case "valueNameFirma":
+        if (btnNameFirma) {
+          refValueNameFirma.current.style.backgroundColor = "rgb( 89, 151, 212 )";
+          refValueNameFirma.current.style.color = "rgb(  237, 240, 243  )";
+          setBtnNameFirma(false);
+          dispatch(NEW_PDF({ titulo: name, valor: "1" }));
+          for (let index = 0; index < arrValueFirmas.length; index++) {
+            if (selectAreaFirmas == index) {
+              dispatch(NEW_PDF({ titulo: arrValueFirmas[index], valor: `${arrDbFirmas[index]} (Nombre)` }));
+            }
+          }
+        } else {
+          refValueNameFirma.current.style.backgroundColor = "rgb( 237, 240, 243 )";
+          refValueNameFirma.current.style.color = "rgb(   13, 17, 22  )";
+          setBtnNameFirma(true);
+          dispatch(NEW_PDF({ titulo: name, valor: "0" }));
+        }
+        break;
+      case "valueNominaFirma":
+        if (btnNominaFirma) {
+          refValueNominaFirma.current.style.backgroundColor = "rgb( 89, 151, 212 )";
+          refValueNominaFirma.current.style.color = "rgb(  237, 240, 243  )";
+          setBtnNominaFirma(false);
+          dispatch(NEW_PDF({ titulo: name, valor: "1" }));
+          for (let index = 0; index < arrValueFirmas.length; index++) {
+            if (selectAreaFirmas == index) {
+              dispatch(NEW_PDF({ titulo: arrValueFirmas[index], valor: `${arrDbFirmas[index]}
+ (Nomina)` }));
+            }
+          }
+        } else {
+          refValueNominaFirma.current.style.backgroundColor = "rgb( 237, 240, 243 )";
+          refValueNominaFirma.current.style.color = "rgb(   13, 17, 22  )";
+          setBtnNominaFirma(true);
+          dispatch(NEW_PDF({ titulo: name, valor: "0" }));
+        }
+        break;
+      case "valuePuestoFirma":
+        if (btnPuestoFirma) {
+          refValuePuestoFirma.current.style.backgroundColor = "rgb( 89, 151, 212 )";
+          refValuePuestoFirma.current.style.color = "rgb(  237, 240, 243  )";
+          setBtnPuestoFirma(false);
+          dispatch(NEW_PDF({ titulo: name, valor: "1" }));
+          for (let index = 0; index < arrValueFirmas.length; index++) {
+            if (selectAreaFirmas == index) {
+              dispatch(NEW_PDF({ titulo: arrValueFirmas[index], valor: `${arrDbFirmas[index]}
+ (Puesto)` }));
+            }
+          }
+        } else {
+          refValuePuestoFirma.current.style.backgroundColor = "rgb( 237, 240, 243 )";
+          refValuePuestoFirma.current.style.color = "rgb(   13, 17, 22  )";
+          setBtnPuestoFirma(true);
+          dispatch(NEW_PDF({ titulo: name, valor: "0" }));
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
+  //renderizado condicional de numero de firmas
+  const renderFirma = (firmxa, onChange) => {
+    switch (dbNewPdf.firma) {
+      case "1":
+        return (
+          <div id="divFirmas">
+            <div>
+              <label htmlFor=""> Firma 1 </label>
+              <textarea
+                id="firma1Form"
+                value={dbNewPdf.nameFirma1}
+                ref={refFirmas1}
+                onClick={selectTextAreaFirmas}
+                name="firma1"
+                slot="0"
+                onChange={onChangeFirmas}
+              />
+            </div>
+          </div>
+        );
+        break;
+      case "2":
+        return (
+          <div id="divFirmas">
+            <div>
+              <label htmlFor=""> Firma 1 </label>
+              <textarea
+                id="firma1Form"
+                value={dbNewPdf.nameFirma1}
+                ref={refFirmas1}
+                onClick={selectTextAreaFirmas}
+                name="firma1"
+                slot="0"
+                onChange={onChangeFirmas}
+              />
+            </div>
+            <div>
+              <label htmlFor=""> Firma 2 </label>
+              <textarea
+                id="firma2Form"
+                value={dbNewPdf.nameFirma2}
+                ref={refFirmas2}
+                onClick={selectTextAreaFirmas}
+                name="firma2"
+                slot="1"
+                onChange={onChangeFirmas}
+              />
+            </div>
+          </div>
+        );
+        break;
+      case "3":
+        return (
+          <div id="divFirmas">
+            <div>
+              <label htmlFor=""> Firma 1 </label>
+              <textarea
+                value={dbNewPdf.nameFirma1}
+                id="firma1Form"
+                ref={refFirmas1}
+                onClick={selectTextAreaFirmas}
+                name="firma1"
+                slot="0"
+                onChange={onChangeFirmas}
+              />
+            </div>
+            <div>
+              <label htmlFor=""> Firma 2 </label>
+              <textarea
+                value={dbNewPdf.nameFirma2}
+                id="firma2Form"
+                ref={refFirmas2}
+                onClick={selectTextAreaFirmas}
+                name="firma2"
+                slot="1"
+                onChange={onChangeFirmas}
+              />
+            </div>
+            <div>
+              <label htmlFor=""> Firma 3 </label>
+              <textarea
+                id="firma3Form"
+                value={dbNewPdf.nameFirma3}
+                ref={refFirmas3}
+                onClick={selectTextAreaFirmas}
+                name="firma3"
+                slot="2"
+                onChange={onChangeFirmas}
+              />
+            </div>
+          </div>
+        );
+        break;
+      case "4":
+        return (
+          <div id="divFirmas">
+            <div>
+              <label htmlFor=""> Firma 1 </label>
+              <textarea
+                id="firma1Form"
+                value={dbNewPdf.nameFirma1}
+                ref={refFirmas1}
+                onClick={selectTextAreaFirmas}
+                name="firma1"
+                slot="0"
+                onChange={onChangeFirmas}
+              />
+            </div>
+            <div>
+              <label htmlFor=""> Firma 2 </label>
+              <textarea
+                id="firma2Form"
+                value={dbNewPdf.nameFirma2}
+                ref={refFirmas2}
+                onClick={selectTextAreaFirmas}
+                name="firma2"
+                slot="1"
+                onChange={onChangeFirmas}
+              />
+            </div>
+            <div>
+              <label htmlFor=""> Firma 3 </label>
+              <textarea
+                id="firma3Form"
+                value={dbNewPdf.nameFirma3}
+                ref={refFirmas3}
+                onClick={selectTextAreaFirmas}
+                name="firma3"
+                slot="2"
+                onChange={onChangeFirmas}
+              />
+            </div>
+            <div>
+              <label htmlFor=""> Firma 4 </label>
+              <textarea
+                id="firma4Form"
+                value={dbNewPdf.nameFirma4}
+                ref={refFirmas4}
+                onClick={selectTextAreaFirmas}
+                name="firma4"
+                slot="3"
+                onChange={onChangeFirmas}
+              />
+            </div>
+          </div>
+        );
+        break;
+      case "5":
+        return (
+          <div id="divFirmas">
+            <div>
+              <label htmlFor=""> Firma 1 </label>
+              <textarea
+                id="firma1Form"
+                value={dbNewPdf.nameFirma1}
+                ref={refFirmas1}
+                onClick={selectTextAreaFirmas}
+                name="firma1"
+                slot="0"
+                onChange={onChangeFirmas}
+              />
+            </div>
+            <div>
+              <label htmlFor=""> Firma 2 </label>
+              <textarea
+                id="firma2Form"
+                value={dbNewPdf.nameFirma2}
+                ref={refFirmas2}
+                onClick={selectTextAreaFirmas}
+                name="firma2"
+                slot="1"
+                onChange={onChangeFirmas}
+              />
+            </div>
+            <div>
+              <label htmlFor=""> Firma 3 </label>
+              <textarea
+                id="firma3Form"
+                value={dbNewPdf.nameFirma3}
+                ref={refFirmas3}
+                onClick={selectTextAreaFirmas}
+                name="firma3"
+                slot="2"
+                onChange={onChangeFirmas}
+              />
+            </div>
+            <div>
+              <label htmlFor=""> Firma 4 </label>
+              <textarea
+                id="firma4Form"
+                value={dbNewPdf.nameFirma4}
+                ref={refFirmas4}
+                onClick={selectTextAreaFirmas}
+                name="firma4"
+                slot="3"
+                onChange={onChangeFirmas}
+              />
+            </div>
+            <div>
+              <label htmlFor=""> Firma 5 </label>
+              <textarea
+                id="firma5Form"
+                value={dbNewPdf.nameFirma5}
+                ref={refFirmas5}
+                onClick={selectTextAreaFirmas}
+                name="firma5"
+                slot="4"
+                onChange={onChangeFirmas}
+              />
+            </div>
+          </div>
+        );
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const onChangeFirmas = (e) => {
+    e.preventDefault();
+    const arrNameFirmas = [
+      "nameFirma1",
+      "nameFirma2",
+      "nameFirma3",
+      "nameFirma4",
+      "nameFirma5",
+    ];
+
+    for (let index = 0; index < arrNameFirmas.length; index++) {
+      if (index == e.target.slot) {
+        dispatch(
+          NEW_PDF({ titulo: arrNameFirmas[index], valor: e.target.value })
+        );
+      }
+    }
+  };
+
+  const selectTextAreaFirmas = (e) => {
+    e.preventDefault();
+    const arrRefFirmas = [
+      refFirmas1,
+      refFirmas2,
+      refFirmas3,
+      refFirmas4,
+      refFirmas5,
+    ];
+    for (let index = 0; index < arrRefFirmas.length; index++) {
+      if (index == e.target.slot) {
+        arrRefFirmas[index].current.style.borderColor = "green";
+        setSelectAreaFirmas(index);
+      } else {
+        arrRefFirmas[index].current.style.borderColor = "gray";
+      }
+    }
+  };
+
   return (
     <form className="formulario">
       <div id="menuNav">
@@ -463,16 +882,14 @@ const Forms = () => {
         <div id="divSizeText">
           <button onClick={subtractSize}> - </button>
           <span>
-            <input
+            <h3
               id="sizeTitle"
               type="number"
               name="sizeTitle"
-              onChange={selectSize}
-              value={dbNewPdf.valueSize}
               min="1"
               max="100"
               pattern="\d*"
-            />
+            > {dbNewPdf.valueSize} </h3>
           </span>
           <button onClick={addValueSize}> + </button>
         </div>
@@ -521,8 +938,13 @@ const Forms = () => {
         </div>
         <label>Cuerpo</label>
         <OverlayTrigger
-          overlay={<Tooltip id="tooltip-disabled"> {`Presiona el boton de la variable que desees usar, si 
-          tu variable no esta en las opciones escribela entre parentesis. eje: (motivo)`} </Tooltip>}
+          overlay={
+            <Tooltip id="tooltip-disabled">
+              {" "}
+              {`Presiona el boton de la variable que desees usar, si 
+          tu variable no esta en las opciones escribela entre parentesis. eje: (motivo)`}{" "}
+            </Tooltip>
+          }
         >
           <span className="d-inline-block">
             <Button disabled style={{ pointerEvents: "none" }}>
@@ -620,6 +1042,20 @@ const Forms = () => {
         </div>
 
         <label htmlFor="text">No. Firmas</label>
+        <OverlayTrigger
+          overlay={
+            <Tooltip id="tooltip-disabled">
+              {" "}
+              {`Seleccione el numero de la firma a editar y utilice el buscador para rellenar el campo.`}{" "}
+            </Tooltip>
+          }
+        >
+          <span className="d-inline-block">
+            <Button disabled style={{ pointerEvents: "none" }}>
+              I
+            </Button>
+          </span>
+        </OverlayTrigger>
         <div>
           <input
             type="number"
@@ -630,35 +1066,110 @@ const Forms = () => {
             max="5"
           />
         </div>
+        <div id="divBuscadorFirmas" ref={refBuscador}>
+          <div>
+            <input
+              type="text"
+              name="busqueda"
+              placeholder="Fuente"
+              value={busquedaFirmas}
+              id="buscadorFuente"
+              onChange={handleBusquedaFirmas}
+            />
+          </div>
+          <div id="listBtnFirmas">
+            {nameFirmasSelect.map(({ name, lastname, _id, puesto }) => (
+              <button
+                className="selectListBtn"
+                onClick={selectNameFirmas}
+                value={_id}
+              >
+                {`${puesto}`} <br />
+                {`${name} ${lastname}`}
+              </button>
+            ))}
+          </div>
+          <div>
+            <button
+              type="checkbox"
+              id="valueName"
+              name="valueNameFirma"
+              onClick={onChangeFirma}
+              ref={refValueNameFirma}
+            >
+              {" "}
+              Nombre{" "}
+            </button>
+          </div>
+          <div>
+            <button
+              type="checkbox"
+              id="valueNomina"
+              name="valueNominaFirma"
+              onClick={onChangeFirma}
+              ref={refValueNominaFirma}
+            >
+              {" "}
+              Nomina{" "}
+            </button>
+          </div>
+          <div>
+            <button
+              type="checkbox"
+              id="valuePuesto"
+              name="valuePuestoFirma"
+              onClick={onChangeFirma}
+              ref={refValuePuestoFirma}
+            >
+              {" "}
+              Puesto{" "}
+            </button>
+          </div>
+          <OverlayTrigger
+          overlay={
+            <Tooltip id="tooltip-disabled">
+              {" "}
+              {`Utlice estos botones para usar los mismos datos que se usaran en el cuerpo.`}{" "}
+            </Tooltip>
+          }
+        >
+          <span className="d-inline-block">
+            <Button disabled style={{ pointerEvents: "none" }}>
+              I
+            </Button>
+          </span>
+        </OverlayTrigger>
+        </div>
+        {renderFirma()}
         <div>
           <h2>Elige la privacidad</h2>
-        <button
-          ref={refAccess}
-          onClick={onChange}
-          className="public"
-          name="access"
-        >
-          Public
-        </button>
-        <button
-          ref={refIdAccess}
-          onClick={onChange}
-          className="private"
-          name="idaccess"
-        >
-          {" "}
-          Private{" "}
-        </button>
-        <button ref={refTeam} className="team" onClick={onChange} name="team">
-          {" "}
-          {nameTeam}{" "}
-        </button>
+          <button
+            ref={refAccess}
+            onClick={onChange}
+            className="public"
+            name="access"
+          >
+            Public
+          </button>
+          <button
+            ref={refIdAccess}
+            onClick={onChange}
+            className="private"
+            name="idaccess"
+          >
+            {" "}
+            Private{" "}
+          </button>
+          <button ref={refTeam} className="team" onClick={onChange} name="team">
+            {" "}
+            {nameTeam}{" "}
+          </button>
         </div>
         <div className="divBtnOk">
-        <button className="btnRoot" onClick={_handleSubmit}>
-          Agregar
-        </button>
-      </div>
+          <button className="btnRoot" onClick={_handleSubmit}>
+            Agregar
+          </button>
+        </div>
       </div>
     </form>
   );

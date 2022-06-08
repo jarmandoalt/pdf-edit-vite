@@ -44,7 +44,15 @@ export const initialState = {
     fontFamily: "",
     selectObj: "",
     valueSize: 0,
-    valueStyleText: "center"
+    valueStyleText: "center",
+    nameFirma1: "",
+    nameFirma2: "",
+    nameFirma3: "",
+    nameFirma4: "",
+    nameFirma5: "",
+    valueNameFirma: "0",
+    valueNominaFirma: "0",
+    valuePuestoFirma: "0"
   },
   dbFonts: [
     {name: "Arial"},

@@ -75,12 +75,26 @@
 
 #divSizeText > button {
     width: 2.5vw;
+    height: 3.8vh;
     font-family: Verdana;
 }
 
-#divSizeText > span > input {
+#divSizeText > button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+#divSizeText > button:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+#divSizeText > span > h3 {
     width: 5vw;
-    height: 3.5vh;
+    text-align: center;
+    font-family: verdana;
+    font-size: 3vh;
+    color: #565e68;
+    background-color: whitesmoke;
+    height: 3.8vh;
 }
 
 #divStyleText {
@@ -195,6 +209,37 @@
     width: 12vw;
     font-family: verdana;
     font-size: 1vw;
+}
+
+textarea:focus {
+    outline: 0 none;
+}
+
+#firma1Form {
+    border-width: 2px;
+    border-color: green;
+    text-align: center;
+}
+
+#firma2Form {
+    border-width: 2px;
+    text-align: center;
+}
+
+#firma3Form {
+    border-width: 2px;
+    text-align: center;
+
+}
+
+#firma4Form {
+    border-width: 2px;
+    text-align: center;
+}
+
+#firma5Form {
+    text-align: center;
+    border-width: 2px;
 }
 
 
