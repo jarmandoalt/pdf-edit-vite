@@ -9,7 +9,8 @@ import {
 } from "../services/routes";
 import ListPdf from "../UserComponents/ListPdf";
 import Loader from "../HomeComponents/Loader";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { DELETE_DATA_PDF } from "../reducer/crudReducer";
 import Cookies from "universal-cookie";
 
 const User = () => {
@@ -21,12 +22,15 @@ const User = () => {
     idUser = cookies.get("id"),
     nameTeam = cookies.get("team"),
     name = cookies.get("name"),
-    lastname = cookies.get("lastname");
+    lastname = cookies.get("lastname"),
+    dispatch = useDispatch(),
+    { dbNewPdf, dbFonts } = useSelector((state) => state.crud)
 
   useEffect(() => {
     loadPdfPrivate();
     loadPdfPublic();
     loadPdfTeam();
+    dispatch(DELETE_DATA_PDF());
   }, []);
   
   const loadPdfPrivate = async () => {
@@ -64,11 +68,10 @@ const User = () => {
       case undefined:
         window.location.href = "./";
         break;
-
       default:
         return (
           <div>
-            <HeaderSignOff titles={`PDF/${name} ${lastname}`} />
+            <HeaderSignOff titles={`PDF / ${name} ${lastname}`} />
             <AddBtn />
             {isLoader ? (
               <Loader />
@@ -82,7 +85,6 @@ const User = () => {
             )}
           </div>
         );
-        break;
     }
   };
 

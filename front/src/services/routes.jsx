@@ -3,6 +3,22 @@ import md5 from "md5";
 
 const baseUrl = "http://localhost:8000"
 
+export async function getPdf (id) {
+  try {
+    const response = await Axios({
+      url: `${baseUrl}/v1/newId`,
+      method: 'GET',
+      params: {
+      id: id
+    }
+    })
+
+    return response
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export async function getPdfPublic () {
   try {
     const response = await Axios({
@@ -88,7 +104,6 @@ export async function getUserTeam (name) {
 }
 
 export async function getPayRoll () {
-  console.log('aqui');
   try {
     const response = await Axios.get(`http://localhost:7070/v1/new`)
 

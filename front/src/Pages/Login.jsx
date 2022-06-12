@@ -1,7 +1,5 @@
-import { useState, createRef } from "react";
+import { useState, createRef, useEffect } from "react";
 import axios from "axios";
-import { NEW_DATA_USERS } from "../reducer/crudReducer";
-import { useSelector, useDispatch } from "react-redux";
 import Header from "../HomeComponents/Header";
 import { useNavigate } from "react-router-dom"
 import Cookies from "universal-cookie";
@@ -12,17 +10,18 @@ function Login() {
     password: "",
   }),
     refFailLog = createRef(),
+    refLabelUser = createRef(),
+    refLabelPassword = createRef(),
+    refBtn = createRef(),
+    refDivBtn = createRef(),
     navigate = useNavigate(),
-    dispatch = useDispatch();
+    baseUrl = "http://localhost:8000",
+    cookies = new Cookies();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
-  const baseUrl = "http://localhost:8000",
-    $failLog = document.getElementById('divFailLog'),
-    cookies = new Cookies();
 
   const getUser = async (e) => {
     e.preventDefault();
@@ -38,6 +37,8 @@ function Login() {
       })
       .then((response) => {
         if (response.users.length > 0) {
+          refDivBtn.current.classList.add('is-active')
+          refBtn.current.classList.add('is-back')
           let data = response.users[0];
 
           cookies.set("id", data._id, { path: "/" });
@@ -46,13 +47,17 @@ function Login() {
           cookies.set("username", data.username, { path: "/" });
           cookies.set("team", data.team, { path: "/" });
 
-          if (data._id === "629c73dd87690554706ad9f7") {
-            navigate("/home/admin");
-          } else {
-            navigate("/home/user");
-          }
+          setTimeout(() => {
+            if (data._id === "629c73dd87690554706ad9f7") {
+              navigate("/home/admin");
+            } else {
+              navigate("/home/user");
+            }  
+          }, 200);
         } else {
-          $failLog.classList.add('is-active')
+          refFailLog.current.classList.add('is-active')
+          refBtn.current.classList.add('is-active')
+          refDivBtn.current.classList.add('is-opacity')
         }
       })
       .catch((error) => {
@@ -60,40 +65,82 @@ function Login() {
       });
   };
 
+  useEffect(() => {
+    addClass()
+  }, [formValues.username, formValues.password])
+  
+
+  const addClass = () => {
+    if (formValues.username) {
+      refLabelUser.current.classList.add('is-active')
+      refFailLog.current.classList.remove('is-active')
+      refBtn.current.classList.remove('is-active')
+      refDivBtn.current.classList.remove('is-opacity')
+    } else {
+      refLabelUser.current.classList.remove('is-active')
+    }
+    if (formValues.password) {
+      refLabelPassword.current.classList.add('is-active')
+      refBtn.current.classList.remove('is-active')
+      refFailLog.current.classList.remove('is-active')
+      refDivBtn.current.classList.remove('is-opacity')   
+    } else {
+      refLabelPassword.current.classList.remove('is-active')
+    }
+  }
+
   return (
     <div>
       <div>
-        <Header titles="Pdf/Login" />
+        <Header titles="Pdf / Login" />
       </div>
-      <div className="divFailLog" id="divFailLog"> 
-          <h1 className="failLog" ref={refFailLog} id="failLog">El usuario o la contraseña no son validos</h1>
-        </div>
       <form className="formLogin" onSubmit={getUser}>
-     
-        <div className="mb-3">
-          <label htmlFor=""> User </label>
-          <input
-            type="text"
-            name="username"
-            onChange={handleChange}
-            value={formValues.username}
-          />
+      <div>
+            <h1>Iniciar Sesión</h1>
+          </div>
+          <div ref={refFailLog} className="divFailLog">
+        <h1 className="failLog" id="failLog">
+          El usuario o la contraseña no son validos
+        </h1>
+      </div>
+        <div >
+          <div>
+            <label ref={refLabelUser} name="labelUser" className="labelUser" htmlFor="">
+              {" "}
+              Usuario{" "}
+            </label>
+          </div>
+          <div>
+            <input
+              type="text"
+              name="username"
+              autocomplete="off"
+              onChange={handleChange}
+              value={formValues.username}
+              placeholder={"Usuario"}
+            />
+          </div>
+          <div>
+            <label ref={refLabelPassword} name='labelPassword' className="labelPassword" htmlFor=""> Contraseña </label>
+          </div>
+          <div>
+            <input
+              className="inputPassword"
+              type="password"
+              name="password"
+              autocomplete="off"
+              onChange={handleChange}
+              value={formValues.password}
+              placeholder={"Contraseña"}
+            />
+          </div>
+          <div className="divBtnSubmit" ref={refDivBtn}>
+            <button ref={refBtn} className="btnSubmitLogin" type="submit">
+              {" "}
+              Aceptar{" "}
+            </button>
+          </div>
         </div>
-        <div className="mb-3">
-          <label htmlFor=""> Password </label>
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            value={formValues.password}
-          />
-        </div>
-        
-
-          <button className="btnRoot" type="submit">
-            {" "}
-            Log In{" "}
-          </button>
       </form>
     </div>
   );

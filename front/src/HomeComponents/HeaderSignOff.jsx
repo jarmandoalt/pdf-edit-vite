@@ -3,7 +3,7 @@ import SignOffBtn from "./SignOffBtn";
 const Header = (props) => {
   
   return (
-    <div className='navbar'>
+    <div className='divHeader'>
       <h1 > {props.titles} </h1>
       <SignOffBtn/>
     </div>

@@ -6,6 +6,7 @@ import Cookies from "universal-cookie";
 import {OverlayTrigger, Button, Tooltip} from 'react-bootstrap'
 import { savePdf } from "../services/routes";
 import { getPayRoll } from "../services/routes";
+import { useNavigate } from "react-router-dom"
 
 const Forms = () => {
   const { dbNewPdf, dbFonts } = useSelector((state) => state.crud),
@@ -34,12 +35,14 @@ const Forms = () => {
     refValueNominaFirma = createRef(),
     refValuePuestoFirma = createRef(),
     cookies = new Cookies(),
-    nameTeam = cookies.get("team");
+    nameTeam = cookies.get("team"),
+    idUser = cookies.get("id"),
+    navigate = useNavigate()
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
-    savePdf({ dbNewPdf });
-    //history.push("/home/user");
+    await savePdf({ dbNewPdf });
+    navigate("/home/user");
   };
 
   const [pressClick, setPressClick] = useState(false),
@@ -53,10 +56,6 @@ const Forms = () => {
     [btnNameFirma, setBtnNameFirma] = useState(true),
     [btnNominaFirma, setBtnNominaFirma] = useState(true),
     [btnPuestoFirma, setBtnPuestoFirma] = useState(true),
-    [access, setAccess] = useState(true),
-    [idaccess, setIdAccess] = useState(false),
-    [team, setTeam] = useState(false),
-    [editTitles, setEditTitles] = useState(false),
     [busqueda, setBusqueda] = useState(""),
     [busquedaFirmas, setBusquedaFirmas] = useState(""),
     [arialSelect, setArialSelect] = useState([]),
@@ -210,7 +209,7 @@ const Forms = () => {
         refAccess.current.style.color = "rgb(  13, 17, 22  )";
         refTeam.current.style.backgroundColor = "rgb( 237, 240, 243 )";
         refTeam.current.style.color = "rgb(  13, 17, 22  )";
-        dispatch(NEW_PDF({ titulo: name, valor: "1" }));
+        dispatch(NEW_PDF({ titulo: name, valor: idUser }));
         dispatch(NEW_PDF({ titulo: "access", valor: "0" }));
         dispatch(NEW_PDF({ titulo: "team", valor: "0" }));
         break;
@@ -221,7 +220,7 @@ const Forms = () => {
         refAccess.current.style.color = "rgb(  13, 17, 22  )";
         refIdAccess.current.style.backgroundColor = "rgb( 237, 240, 243 )";
         refIdAccess.current.style.color = "rgb(  13, 17, 22  )";
-        dispatch(NEW_PDF({ titulo: name, valor: "1" }));
+        dispatch(NEW_PDF({ titulo: name, valor: `${nameTeam}` }));
         dispatch(NEW_PDF({ titulo: "access", valor: "0" }));
         dispatch(NEW_PDF({ titulo: "idaccess", valor: "0" }));
         break;
@@ -596,7 +595,7 @@ const Forms = () => {
   };
 
   //renderizado condicional de numero de firmas
-  const renderFirma = (firmxa, onChange) => {
+  const renderFirma = (firma, onChange) => {
     switch (dbNewPdf.firma) {
       case "1":
         return (
@@ -911,7 +910,7 @@ const Forms = () => {
           <input type="file" id="file" onChange={images} />
         </div>
         <div>{/* <button onClick={selectImg}>edit</button> */}</div>
-        <label htmlFor="date">Lugar</label>
+        <label htmlFor="date">Lugar y Fecha</label>
         <div>
           <input
             type="text"

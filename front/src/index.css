@@ -1,557 +1,298 @@
-h1,
-h2,
-p,
-a,
-input,
-label,
-select,
-button,
-li {
-  font-family: Dosis;
+body {
+  background-color: mintcream;
 }
 
-.bodyRoot {
-  background-color: whitesmoke;
-}
-
-button {
-  border-style: none;
-  border-radius: 5px;
-}
-
-.btnRoot {
-  background-color: darkgray;
-}
-
-.btnRoot:hover {
-  background-color: rgb(37, 91, 172);
-  color: aliceblue;
-}
-
-.btnSignOff {
-  z-index: 999;
-  width: 10vw;
-  position: fixed;
-  top: 2.7vh;
-  left: 80vw;
-  border-radius: 5px;
-}
-
-.btnSignOff > button {
-  width: 10vw;
-  font-size: 1.3vw;
-}
-
-.btnSignOff > button:hover {
-  background-color: rgb(126, 59, 59);
-  color: aliceblue;
-}
-
-.divLoader {
+/****** Header *********/
+.divHeader {
+  width: 95vw;
+  height: 10vh;
+  background-color: rgb(70, 88, 104);
+  margin-top: 1vh;
+  margin-left: 2.5vw;
+  border-radius: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.divHeader > h1 {
+  margin: auto 0 auto 3vw;
+  color: whitesmoke;
+}
+
+/***** Singg Off ***********/
+
+.divSignOff {
+  width: 7vw;
+  border-radius: 0 10px 10px 0;
+  font-size: 2vw;
+  color: rgb(231, 229, 229);
+  border: none;
+  background-color: rgb(224, 80, 80);
+  box-shadow: 0 0 5px rgb(233, 124, 91);
+}
+
+.divSignOff:hover {
+  background-color:  rgb(235, 101, 101);
+  box-shadow: 0 0 5px rgb(247, 100, 94);
+  color: whitesmoke;
+}
+
+/********** Add Btn ************/
+
+.addBtn {
+  width: 15vw;
+  height: 7vh;
+  margin-top: 2vh;
+  margin-left: 42.5vw;
+  background-color: #2b97fa;
+  color: whitesmoke;
+  font-size: 2vw;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgb(53, 154, 248);
+}
+
+.addBtn:hover {
+  background-color: #49a4f8;
+  box-shadow: 0 0 5px rgb(66, 159, 247);
+}
+
+/*********** Form Login  **********/
+.formLogin {
+  width: 40vw;
+  background-color: rgb(99, 131, 158);
+  height: 50vh;
+  margin-left: 30vw;
+  margin-top: 15vh;
+  border-radius: 7px;
+  box-shadow: 0 0 10px rgb(24, 62, 77);
+}
+
+.formLogin > div:first-child {
   position: relative;
-  top: 10vh;
+  background-color: rgb(76, 91, 124);
+  width: 35vw;
+  height: 10vh;
+  margin-left: 2.5vw;
+  z-index: 50;
+  top: -5vh;
+  display: flex;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgb(65, 104, 88);
 }
 
-select,
-input,
-textarea {
-  border-style: solid;
-  border-width: 0.5px;
-  border-color: rgb(182, 179, 169);
-  border-radius: 5px;
-}
-
-select,
-input {
+.formLogin > div:first-child > h1 {
+  color: whitesmoke;
+  margin: auto;
   text-align: center;
 }
 
-input:focus {
-  background-color: rgb(250, 249, 248);
-}
-
-input:focus-visible {
-  outline: 1px solid rgb(218, 215, 208);
-}
-
-select:focus {
-  background-color: rgb(250, 249, 248);
-}
-
-select:focus-visible {
-  outline: 1px solid rgb(218, 215, 208);
-}
-
-select::after {
-  display: table-cell;
-  background-color: crimson;
-  pointer-events: none;
-}
-
-.navbar > h1 {
-  width: 99vw;
-  background-color: rgb(58, 67, 77);
-  color: aliceblue;
-  position: fixed;
-  top: .5vh;
-  left: .5vw;
-  z-index: 999;
-  padding-left: 10vw;
+.formLogin > div:last-child {
+  width: 30vw;
+  margin: -2vh auto;
+  height: 38vh;
+  background-color: rgb(108, 151, 119);
   border-radius: 5px;
-  height: 9vh;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgb(79, 116, 95);
 }
 
-/***********   Home   **********/
+.formLogin > div:last-child > div {
+  margin: auto;
+}
 
-.add {
+.formLogin > div:last-child > div > label { 
   position: relative;
-  margin-top: 10vh;
-  left: 45vw;
-  width: 10vw;
-  height: 8vh;
-  font-size: 4vh;
-}
-
-
-.btnPdf {
-  position: relative;
-  width: 60.33vw;
-  left: 20vw;
-  top: 3vh;
-  background-color: whitesmoke;
-}
-
-.btnPdf > button {
-  width: 19.66vw;
-  height: 7vh;
-  margin-right: .33vw;
-  font-size: 2vw;
-  background-color: silver;
-}
-
-.btnPdf > button:first-child {
-  background-color: cadetblue;
   color: whitesmoke;
+  font-size: 1.3vw;
+  translate: 0 3.85vw;
+  z-index: 0;
+  opacity: 0%;
+  transition: z-index .1s ease;
+}
+
+.formLogin > div:last-child > div > label.is-active { 
+  font-size: 1.5vw;
+  opacity: 100%;
+  translate: 0 1vw;
+  z-index: 100;
+  transition: translate .1s ease;
+}
+
+.formLogin > div:last-child > div > input { 
+  position: relative;
+  background-color: rgb(108, 151, 119);
+  border: none;
+  text-align: center;
+  font-size: 1.3vw;
+  color: whitesmoke;
+  z-index: 50;
+  border-bottom: 1px solid whitesmoke;
+  outline: none;
+}
+
+.inputPassword {
+  margin-bottom: 5vh;
+}
+
+.divFailLog {
+  position: absolute;
+  width: 35vw;
+  height: 10vh;
+  margin-left: 2.5vw;
+  margin-top: -15vh;
+  border-radius: 8px;
+  display: flex;
+  z-index: 100;
+  opacity: 0%;
+  background-color:  rgb(76, 91, 124);
+  transition: opacity background-color .1s ease-in;
+}
+
+.divFailLog.is-active {
+  opacity: 100%;
+  background-color: rgb(209, 120, 120);
+  transition: all .1s ease-in;
+}
+
+.divFailLog > h1 {
+  color: whitesmoke;
+  font-size: 2vw;
+  text-align: center;
+  margin: auto;
+}
+
+.divBtnSubmit {
+  border-radius: 8px;
+  background-color: mintcream;
+  opacity: 100%;
+}
+
+.divBtnSubmit.is-opacity {
+  opacity: 0;
+}
+
+.divBtnSubmit.is-active {  
+  position: relative;
+  z-index: 400;
+  border-radius: 20%;
+  opacity: 90%;
+  transform: scale(100);
+  -webkit-transform: scale(100);
+  -moz-transform: scale(100);
+  -ms-transform: scale(100);
+  transition: transform 1s ease; 
+}
+
+.btnSubmitLogin {
+  width: 13vw;
+  position: relative;
+  background-color: rgb(150, 152, 235);
+  border: none;
+  height: 5.5vh;
+  color: whitesmoke;
+  font-size: 1.5vw;
+  border-radius: 7px;
+  opacity: 100%;
+  box-shadow: 0 0 5px rgb(177, 226, 241);
+}
+
+.btnSubmitLogin:hover {
+  background-color: rgb(166, 167, 247);
+  box-shadow: 0 0 10px rgb(105, 221, 241);
+  color: rgb(117, 116, 116);
+}
+
+.btnSubmitLogin.is-active {
+  background-color: rgb(104, 100, 100);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0%;
+}
+
+.btnSubmitLogin.is-back {
+  color: mintcream;
+  box-shadow: none;
+  background-color: mintcream;
+}
+
+
+/*********** List Pdf ***********/
+
+.divBtnPdf > button {
+  width: 25vw;
+  height: 7vh;
+  background-color:  rgb(99, 118, 158);
+  color: whitesmoke;
+  font-size: 2vw;
+  border: none;
+}
+
+.divBtnPdf > button:first-child {
+  margin-left: 12.5vw;
+  border-radius: 5px 0 0 5px;
+  background-color: rgb(76, 91, 124);
+}
+
+.divBtnPdf > button:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.divDont > h1{
+  position: absolute;
+  width: 10vw;
+  background-color: rgb(108, 151, 145);
+  margin-top: -4vh;
+  z-index: -3;
+  border-radius: 5px;
+  margin-left: 45vw;
+  text-align: center;
+  height: .2vh;
+  font-size: .2vh;
+  transition: all .5s ease; 
+  color: whitesmoke;
+}
+
+.h1DontPub.is-active {
+  width: 60vw;
+  margin-left: 20vw;
+  height: 7vh;
+  margin-top: 1vh;
+  font-size: 3vw;
+  transition: all .5s ease; 
+}
+
+.h1DontPriv.is-active {
+  width: 60vw;
+  margin-left: 20vw;
+  height: 7vh;
+  margin-top: 1vh;
+  transition: all .5s ease; 
+  font-size: 3vw;
+}
+
+.h1DontTeam.is-active {
+  width: 60vw;
+  margin-left: 20vw;
+  height: 7vh;
+  margin-top: 1vh;
+  font-size: 3vw;
+  transition: all .5s ease; 
 }
 
 .listPdf {
   position: absolute;
-  width: 58vw;
-  top: 28vh;
-  left: 20vw;
-  height: .1vh;
-  z-index: -10;
-  transition: .2s ease-in-out;
-}
-
-.listPdf.is-active {
-  top: 16.5vw;
-  height: 10vh;
-  transition: .2s ease-in-out;
 }
 
 .listPdf > div {
-  background-color: rgb(58, 67, 77);
-  height: .1vh;
-  width: 59.5vw;
-  border-radius: 5px;
-  margin-bottom: .5vh;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.listPdf.is-active > div {
-  height: 8vh;
-}
-
-.divList{
-  background-color: whitesmoke;
-  margin-top: .5vh;
-  margin-left: 1vw;
-  height: .1vh;
-  width: 58vw;
-}
-
-.listPdf.is-active > div > div {
+  background-color: rgb(108, 151, 119);
+  width: 60vw;
+  margin-left: 20vw;
   height: 7vh;
-}
-
-.cardPdf {
-  width: 57vw;
-  text-align: start;
-  border-radius: 5px;
-  height: .1vh;
-  padding-top: -2vh;
-  padding-left: 1.5vw;
-  list-style: none;
-  font-size: .1vw;
-}
-
-.listPdf.is-active > div > div > h1 {
-  height: 5vw;
-  font-size: 3vw;
-}
-
-.btnPdfs {
-  position: absolute;
-  left: 46vw;
-  top: -2vh;
-  width: 12vw;
-  height: .1vh;
-}
-
-.btnPdfs.is-active {
-  position: relative;
-  top: -6vh;
-}
-
-.btnIr {
-  width: 5vw;
-  height: .1vh;
-  font-size: .1vh;
-}
-
-.listPdf.is-active > div > div > button {
-  height: 5vh;
-  font-size: 1.5vw;
-}
-
-.btnDelete {
-  background-color: rgb(206, 121, 121);
-  color: aliceblue;
-  height: .1vh;
-  position: relative;
-  margin-left: 5px;
-  font-size: .1vh;
-}
-
-.listPdf.is-active > div > div > a > button {
-  height: 5vh;
-  font-size: 1.5vw;
-}
-
-.btnDelete:hover {
-  background-color: rgb(122, 19, 19);
-  color: antiquewhite;
-}
-
-.dontHave > h1{
-  position: absolute;
-  background-color: slategray;
-  color: whitesmoke;
-  left: 20vw;
-  width: 59.5vw;
-  border-radius: 5px;
-  text-align: center;
-  top: 25vh;
-  height: .1vh;
-  font-size: .1vh;
-  z-index: -10;
-  transition: .5s ease-in-out;
-}
-
-.dontHave.is-active > h1 {
-  top: 35.5vh;
-  height: 7vh;
-  font-size: 2.6vw;
-  transition: .5s ease-in-out;
-}
-
-/********************************************   Pdf  **********************************************/
-
-/***********   Form  ************/
-
-#divViewPdfForm {
-  position: relative;
-  top: 40vh;
-}
-
-.divPdfForm {
-  display: flex;
-  flex-wrap: wrap;
-  width: 45vw;
-}
-
-/* #lienzoTitle {
-  position: relative;
-  top: -180px;
-  background-color: brown;
-  z-index: 600;
-}
-
-#lienzo {
-  position: relative;
-  background-color: rgba(117, 117, 168, 0.678);
-  z-index: 900;
-}
- */
-.divPdfForm > div {
-  width: 18vw;
-}
-
-.labelPdfForm {
-  width: 10vw;
   margin-top: 1vh;
-  margin-left: 2vw;
-  font-size: 3vh;
-}
-
-.inputPdfForm {
-  width: 20vw;
-  margin-left: 1vw;
-  margin-bottom: .5vh;
-  overflow: auto;
-  height: 4vh;
-}
-
-#divFirmas {
-  width: 37vw;
-  position: relative;
+  font-size: 3vw;
+  transition: all .5s ease; 
   display: flex;
-  flex-wrap: wrap;
-  left: 6vw;
-  top: 1vh;
-}
-
-#divFirmas > div {
-  width: 16vw;
-  margin-top: 0.5vh;
-  margin-left: 1vw;
-}
-
-#divFirmas > div > label {
-  margin-left: 0.7vw;
-}
-
-#divFirmas > div > textarea {
-  width: 15.5vw;
-  margin-left: 1vw;
-}
-
-.public {
-  background-color: rgb( 89, 151, 212 );
-  color: rgb(  237, 240, 243  );
-}
-
-#imgCard:hover {
-  border-style: solid;
-  border-width: .1px;
-}
-
-#divFechaLocationCard:hover {
-  border-style: solid;
-  border-width: .1px;
-}
-
-#titleCard:hover {
-  border-style: solid;
-  border-width: .1px;
-}
-
-#bodyCard:hover {
-  border-style: solid;
-  border-width: .1px;
-}
-
-#divFirmasCard:hover {
-  border-style: solid;
-  border-width: .1px;
-}
-
-/***************  LOGIN    ******************/
-
-.formLogin {
-  position: relative;
-  width: 40vw;
-  height: 45vh;
-  top: 20vh;
-  left: 30vw;
-  background-color: rgb(104, 152, 184);
-  border-radius: 5px;
-}
-
-.formLogin > div > label {
-  width: 20vw;
-  position: relative;
-  left: 10vw;
-  font-size: 2.5vw;
-  text-align: center;
-}
-
-.formLogin > div > input {
-  width: 30vw;
-  position: relative;
-  left: 5vw;
-  font-size: 2vw;
-}
-
-.formLogin > button {
-  position: relative;
-  left: 15vw;
-  width: 10vw;
-  top: 2vh;
-}
-
-.divFailLog {
-  position: relative;
-  top: 26vh;
-  left: 35vw;
-  width: 40vw;
-  z-index: 10;
-  transition: .5s ease;
-  z-index: -10;
-}
-
-.failLog {
-  font-size: 1.8vw;
-  width: 30vw;
-  text-align: center;
-  background-color: crimson;
-  border-radius: 5px 5px 0 0;
-}
-
-.divFailLog.is-active {
-  top: 21.5vh;
-  transition: .5s ease; 
-}
-
-/**************  User Team  ************/
-
-.listTeamCard {
-  position: relative;
-  left: 25vw;
-  width: 40vw;
-  top: 4vh;
-}
-
-.listTeamCard > div > button {
-  width: 50vw;
-  text-align: center;
-  background-color: darkgray;
-  height: 6.3vh;
-  font-size: 4vh;
-}
-
-.listTeamCard > div > button:hover{
-  background-color: rgb(37, 91, 172);
-}
-
-.listTeamCard > div > div {
-  position: relative;
-  top: .3vh;
-}
-
-
-.divCardUser {
-  position: relative;
-  left: 3vw;
-  width: 44vw;
-  background-color: rgb(106, 161, 149);
-  top: .5vh;
-  padding-left: 2vw;
-  border-radius: 5px;
-}
-
-.divCardUser > h2 {
-  font-size: 2vw;
-  height: 6vh;
-}
-
-/*********  Modal  *********/
-
-.titleModal {
-  font-size: 2vw;
-  margin-left: 13.5vw;
-}
-
-.labelModal {
-  font-size: 1.5vw;
-  margin-left: 3vw;
-  margin-right: 1.5vw;
-}
-
-.inputModal {
-  width: 18vw;
-  text-align: center;
-}
-
-#btnModalClose {
-  height: 6vh;
-  width: 5vw;
-  font-size: 1.3vw;
-  background-color: silver;
-}
-
-#btnModalClose:hover {
-  background-color: rgb(126, 59, 59);
-  color: aliceblue;
-}
-
-#btnModal {
-  height: 7vh;
-  width: 6vw;
-  font-size: 1.3vw;
-  background-color: silver;
-}
-
-#btnModal:hover {
-  background-color: rgb(37, 91, 172);
-  color: aliceblue;
-}
-
-.headerModal {
-  background-color: whitesmoke;
-  height: 8vh;
-}
-
-.bodyModal {
-  background-color: rgb(230, 225, 230);
-}
-
-.footModal {
-  height: 11vh;
-  background-color: whitesmoke;
-}
-
-#buscador {
-  width: 34vw;
-}
-
-#divBuscador {
-  background-color: coral;
-  height: 17.5vh;
-}
-
-.btnBuscador {
-  width: 30vw;
-  position: relative;
-  left: 2vw;
-  top: 1vh;
-  padding: 3px;
-  margin: 1px;
-  transition: 10s ease-in-out;
-}
-
-.btnBuscador:hover {
-  background-color: cadetblue;
-}
-
-#divBuscadorPdf {
-  position: relative;
-  top: 30vh;
-}
-
-.version{
-  position: absolute;
-  width: 100vw;
-  bottom: 0;
-}
-
-.version > h1 {
-  font-size: 1vw;
-  width: 100%;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-align: center;
 }

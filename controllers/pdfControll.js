@@ -70,6 +70,13 @@ async function getPdf(req, res) {
   res.status(200).send({ pdfs });
 }
 
+async function getPdfId(req, res) {
+  let id = req.query.id
+  console.log(req.query);
+  const pdfs = await Pdf.find({ _id: `${id}` })
+  res.status(200).send({ pdfs });
+}
+
 async function deletePdf(req, res) {
   const _id = req.query._id;
   try {
@@ -110,5 +117,6 @@ async function updatePdf(req, res) {
 module.exports = {
   addPdf,
   getPdf,
+  getPdfId,
   deletePdf,
 };

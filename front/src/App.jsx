@@ -17,7 +17,7 @@ function App() {
         <Route exact path='/home' element={<Login />}/>
         <Route exact path="/home/user" element={<User />}/>
         <Route exact path="/home/admin" element={<Admin />}/>
-        <Route exact path='/home/user/pdf/:id' element={<Pdf />}/>
+        <Route exact path='/home/user/pdf' element={<Pdf />}/>
         <Route exact path="/home/user/new" element={<New />}/>
         <Route element={<NotFound/>}/>
       </Routes>

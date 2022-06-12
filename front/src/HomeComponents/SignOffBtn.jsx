@@ -13,9 +13,7 @@ function SignOffBtn() {
   };
 
   return (
-    <div className="btnSignOff btnRoot">
-      <button onClick={signOff}>Sign Off</button>
-    </div>
+      <button className="divSignOff" onClick={signOff}>Salir</button>
   );
 }
 

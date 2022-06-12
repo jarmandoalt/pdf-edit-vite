@@ -3,7 +3,6 @@ import Forms from "../NewPdfComponents/Form";
 import Header from "../HomeComponents/Header";
 import Card from "../NewPdfComponents/Card";
 import Cookies from "universal-cookie";
-import { useSelector, useDispatch } from "react-redux";
 
 const New = (e) => {
   const fileRef = useRef(),
