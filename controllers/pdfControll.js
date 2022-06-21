@@ -98,6 +98,30 @@ async function deletePdf(req, res) {
   }
 }
 
+async function deletePdfTeam(req, res) {
+  const _id = req.query._id;
+  const ids = _id.split(",")
+  for (let index = 0; index < ids.length; index++) {
+    try {
+      const result = await Pdf.deleteMany({ idaccess: ids[index] });
+  
+      if (result) {
+        res.json({
+          estado: true,
+          message: "eliminado",
+        });
+      } else {
+        res.json({
+          estado: false,
+          message: "Fallo eliminar",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    } 
+  }
+}
+
 async function updatePdf(req, res) {
   id = req.body.id;
   const { name, number, direction } = req.params;
@@ -119,4 +143,5 @@ module.exports = {
   getPdf,
   getPdfId,
   deletePdf,
+  deletePdfTeam
 };

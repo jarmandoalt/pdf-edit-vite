@@ -8,7 +8,8 @@ async function addUser(req, res) {
       lastname,
       username,
       password,
-      team
+      team,
+      position
     } = req.query;
 
     const users = User({
@@ -16,7 +17,8 @@ async function addUser(req, res) {
         lastname,
         username,
         password,
-        team
+        team,
+        position
     });
 
     const userStored = await users.save();
@@ -38,6 +40,7 @@ async function getUser(req, res) {
 
 async function getUserTeam(req, res) {
   let team = req.query.team
+  console.log(req.query);
   const users = await User.find({team: team} );
   res.status(200).send({ users });
 }
@@ -64,20 +67,26 @@ async function deleteUser(req, res) {
   }
 }
 
-async function updatePdf(req, res) {
-  id = req.body.id;
-  const { name, number, direction } = req.params;
-  const result = await Pdf.findByIdAndUpdate(id, {
-    title,
-    posTitle,
-    sizeTitle,
-    body,
-    imgUrl,
-    posImg,
-    sizeImg,
-    firmas,
-  });
-  res.redirect("/pdf");
+async function deleteUserTeam(req, res) {
+  console.log(req.query.name);
+  const name = req.query.name;
+  try {
+    const result = await User.deleteMany({ team: name });
+
+    if (result) {
+      res.json({
+        estado: true,
+        message: "eliminado",
+      });
+    } else {
+      res.json({
+        estado: false,
+        message: "Fallo eliminar",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 module.exports = {
@@ -85,4 +94,5 @@ module.exports = {
   getUser,
   getUserTeam,
   deleteUser,
+  deleteUserTeam
 };

@@ -24,9 +24,10 @@ async function getTeam(req, res) {
 }
 
 async function deleteTeam(req, res) {
-  const id = req.body.id;
+  const name = req.query.name;
+  console.log(name);
   try {
-    const result = await Team.findByIdAndDelete({ _id: `${id}` });
+    const result = await Team.deleteMany({ name: name });
 
     if (result) {
       res.json({

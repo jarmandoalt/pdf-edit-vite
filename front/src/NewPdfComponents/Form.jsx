@@ -1,7 +1,6 @@
 import { createRef, useState, useEffect } from "react";
 import { NEW_PDF } from "../reducer/crudReducer";
 import { useSelector, useDispatch } from "react-redux";
-import "./index.css";
 import Cookies from "universal-cookie";
 import {OverlayTrigger, Button, Tooltip} from 'react-bootstrap'
 import { savePdf } from "../services/routes";
@@ -852,8 +851,8 @@ const Forms = () => {
   };
 
   return (
-    <form className="formulario">
-      <div id="menuNav">
+    <form className="formNew">
+      <div className="menuNav">
         <div id="divBuscadorFuente" ref={refBuscador}>
           <div>
             <input

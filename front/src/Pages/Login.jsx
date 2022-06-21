@@ -48,7 +48,7 @@ function Login() {
           cookies.set("team", data.team, { path: "/" });
 
           setTimeout(() => {
-            if (data._id === "629c73dd87690554706ad9f7") {
+            if (data._id === "62abab6f852add3fb6fa2844") {
               navigate("/home/admin");
             } else {
               navigate("/home/user");
@@ -114,10 +114,10 @@ function Login() {
             <input
               type="text"
               name="username"
-              autocomplete="off"
               onChange={handleChange}
               value={formValues.username}
               placeholder={"Usuario"}
+              autoFocus
             />
           </div>
           <div>
@@ -126,9 +126,8 @@ function Login() {
           <div>
             <input
               className="inputPassword"
-              type="password"
+              type="text"
               name="password"
-              autocomplete="off"
               onChange={handleChange}
               value={formValues.password}
               placeholder={"Contraseña"}

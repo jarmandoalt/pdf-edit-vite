@@ -2,20 +2,8 @@ import { createRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Draggable from "react-draggable";
 import { NEW_PDF } from "../reducer/crudReducer";
-import './index.css'
 
 const Card = () => {
-  /* useEffect(function () { 
-  },[]); */
-
-  /* const run = () => {
-    posTitles();
-    sizeTitles();
-  }; */
-  //let refPosTitle = createRef(),
-  //refSizeTitle = createRef(),
-  //refPosImg = createRef(),
-
   const { dbNewPdf } = useSelector((state) => state.crud),
     [setTitle, setSizeTitle] = useState({ x: 200, y: 180, w: 10, h: 20 }),
     [editTitles, setEditTitles] = useState(false),

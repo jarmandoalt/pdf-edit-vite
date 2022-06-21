@@ -70,6 +70,9 @@ export const initialState = {
   },
   dbChangeValue: {
 
+  },
+  stateAuxNewUser:{
+    state: false
   }
 };
 
@@ -146,10 +149,14 @@ const crudReducer = createSlice({
         valuePuestoFirma: "0"}
       state.dbPdf = {}
       state.dbChangeValue= {}
+    },
+    STATE_NEW_USER: (state, action) => {
+      const { valor } = action.payload;
+      state.stateAuxNewUser = {state: valor}
     }
-  },
+  }
 });
 
-export const { NEW_PDF, NEW_DATA_USERS, NEW_PDF_EDIT, NEW_EDIT_PDF, DELETE_DATA_PDF } = crudReducer.actions;
+export const { NEW_PDF, NEW_DATA_USERS, NEW_PDF_EDIT, NEW_EDIT_PDF, DELETE_DATA_PDF, STATE_NEW_USER } = crudReducer.actions;
 
 export default crudReducer.reducer;

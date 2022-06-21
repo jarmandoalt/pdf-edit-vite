@@ -157,6 +157,7 @@ export async function savePdf (productData) {
   }
 
   export async function saveUser (userData) {
+    console.log(userData);
     try {
         
       const response = await Axios({
@@ -167,7 +168,8 @@ export async function savePdf (productData) {
               lastname: userData.lastname,
               team: userData.team,
               username: userData.username,
-              password: userData.password
+              password: userData.password,
+              position: userData.puesto
           }
       })
       return response
@@ -199,9 +201,31 @@ export async function savePdf (productData) {
     })
   }
 
+  export async function deletePdfTeam (id) {
+    console.log(id);
+    await Axios.delete(`${baseUrl}/v1/newTeam?_id=${id}`)
+    .then(function(ret){
+      console.log(ret.data)
+    })
+  }
+
   export async function deleteUser (id) {
     console.log(id);
     await Axios.delete(`${baseUrl}/v2/log?id=${id}`)
+    .then(function(ret){
+      console.log(ret.data)
+    })
+  }
+
+  export async function deleteTeam (name) {
+    await Axios.delete(`${baseUrl}/v3/team?name=${name}`)
+    .then(function(ret){
+      console.log(ret.data)
+    })
+  }
+
+  export async function deleteUserTeam (name) {
+    await Axios.delete(`${baseUrl}/v2/delTeam?name=${name}`)
     .then(function(ret){
       console.log(ret.data)
     })

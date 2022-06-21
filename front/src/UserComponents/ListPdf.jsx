@@ -36,10 +36,10 @@ const ListPdf = ({ listPdfPublic, deleteElementPublic, listPdfPrivate, listPdfTe
     }
     if (legthPri > 0) {
       return (
-        <div className="listPdf" id="listPrivate" ref={refListPrivate}>      
+        <div className="listPdf divListPdfPriv" id="listPrivate" ref={refListPrivate}>      
       {listPdfPrivate.map(({ title, _id }) => (
         <div>
-          <div className='divList'>
+          <div>
             <h1 className="cardPdf">{title}</h1>
           </div>
           <div className="btnPdfs" id="btnPrivate" ref={refBtnPrivate}>
@@ -75,9 +75,9 @@ const ListPdf = ({ listPdfPublic, deleteElementPublic, listPdfPrivate, listPdfTe
     if (legthPub > 0) {
       console.log('public');
       return (
-        <div className="listPdf " id="listPublic">       
+        <div className="listPdf divListPdfPub is-active" ref={refListPublic} id="listPublic">       
       {listPdfPublic.map(({ title, _id }) => (
-        <div className="divListPdfPub is-active" ref={refListPublic}>
+        <div className=" " >
           <div className='divList'>
             <h1 className="cardPdf">{title}</h1>
           </div>
@@ -113,10 +113,10 @@ const ListPdf = ({ listPdfPublic, deleteElementPublic, listPdfPrivate, listPdfTe
     }
     if (legthTeam > 0) {
       return (
-        <div className="listPdf" id="listTeam" ref={refListTeam}>     
+        <div className="listPdf divListPdfTeam" id="listTeam" ref={refListTeam}>     
       {listPdfTeam.map(({ title, _id }) => (
         <div>
-          <div className='divList'>
+          <div>
             <h1 className="cardPdf">{title}</h1>
           </div>
           <div className="btnPdfs" id="btnTeam" ref={refBtnTeam}>

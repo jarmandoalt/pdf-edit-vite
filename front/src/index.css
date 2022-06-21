@@ -2,6 +2,12 @@ body {
   background-color: mintcream;
 }
 
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 /****** Header *********/
 .divHeader {
   width: 95vw;
@@ -19,7 +25,7 @@ body {
   color: whitesmoke;
 }
 
-/***** Singg Off ***********/
+/***** Sing Off ***********/
 
 .divSignOff {
   width: 7vw;
@@ -221,13 +227,14 @@ body {
 
 /*********** List Pdf ***********/
 
-.divBtnPdf > button {
+.divBtnPdf > button {position: relative;
   width: 25vw;
   height: 7vh;
   background-color:  rgb(99, 118, 158);
   color: whitesmoke;
   font-size: 2vw;
   border: none;
+  z-index: 999;
 }
 
 .divBtnPdf > button:first-child {
@@ -251,7 +258,7 @@ body {
   text-align: center;
   height: .2vh;
   font-size: .2vh;
-  transition: all .5s ease; 
+  transition: all .2s ease; 
   color: whitesmoke;
 }
 
@@ -261,7 +268,7 @@ body {
   height: 7vh;
   margin-top: 1vh;
   font-size: 3vw;
-  transition: all .5s ease; 
+  transition: all .2s ease; 
 }
 
 .h1DontPriv.is-active {
@@ -269,7 +276,7 @@ body {
   margin-left: 20vw;
   height: 7vh;
   margin-top: 1vh;
-  transition: all .5s ease; 
+  transition: all .2s ease; 
   font-size: 3vw;
 }
 
@@ -279,20 +286,724 @@ body {
   height: 7vh;
   margin-top: 1vh;
   font-size: 3vw;
-  transition: all .5s ease; 
+  transition: all .2s ease; 
 }
 
 .listPdf {
   position: absolute;
+  z-index: 10;
 }
 
 .listPdf > div {
-  background-color: rgb(108, 151, 119);
+  background-color: rgb(174, 182, 179);
+  width: 10vw;
+  position: absolute;
+  margin-left: 45vw;
+  height: .1vh;
+  margin-top: -4vh;
+  transition: all .5s ease; 
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 0 0 5px rgb(150, 149, 149);
+  transition: all .2s ease; 
+}
+
+.listPdf > div > div > h1{
+  color: rgb(104, 103, 103);
+  font-size: .1vh;
+}
+
+.listPdf > div > div > button {
+  width: .5vw;
+  height: .2vh;
+  font-size: 1px;
+}
+
+.listPdf > div > div > a > button {
+  width: .5vw;
+  height: .2vh;
+  font-size: 1px;
+}
+
+/************ Public Documents *************/
+
+.divListPdfPub.is-active > div {
   width: 60vw;
-  margin-left: 20vw;
   height: 7vh;
   margin-top: 1vh;
-  font-size: 3vw;
-  transition: all .5s ease; 
+  position: relative;
+  margin-left: 20vw;
+  z-index: 100;
+  transition: width margin-left .2s ease; 
+}
+
+.divListPdfPub > div > div {
   display: flex;
+}
+
+.divListPdfPub.is-active > div > div > h1 {
+  font-size: 3vw;
+  margin: auto;
+  margin-left: 2vw;
+  transition: all .2s ease; 
+}
+
+.divListPdfPub.is-active > div > div > button {
+  height: 7vh;
+  width: 4.5vw;
+  border: none;
+  font-size: 1vw;
+  border-radius: 0 8.5px 8.5px 0;
+  background-color: rgb(224, 80, 80);
+  box-shadow: 0 0 5px rgb(233, 124, 91);
+  color: whitesmoke;
+  transition: all .2s ease; 
+}
+
+.divListPdfPub.is-active > div > div > button:hover {
+  background-color:  rgb(235, 101, 101);
+  box-shadow: 0 0 5px rgb(247, 100, 94);
+}
+
+.divListPdfPub.is-active > div > div > a > button {
+  height: 7vh;
+  width: 5vw;
+  border: none;
+  color: whitesmoke;
+  font-size: 1.4vw;
+  background-color: #30b683;
+  box-shadow: 0 0 5px #3ec490;
+  transition: all .2s ease; 
+}
+
+.divListPdfPub.is-active > div > div > a > button:hover {
+  background-color: #46c594;
+  box-shadow: 0 0 10px #56d8a6;
+}
+
+/********** Private Documents ********/
+
+.divListPdfPriv.is-active > div {
+  width: 60vw;
+  height: 7vh;
+  margin-top: 1vh;
+  position: relative;
+  margin-left: 20vw;
+  z-index: 100;
+  transition: width margin-left .2s ease; 
+}
+
+.divListPdfPriv > div > div {
+  display: flex;
+}
+
+.divListPdfPriv.is-active > div > div > h1 {
+  font-size: 3vw;
+  margin: auto;
+  margin-left: 2vw;
+}
+
+.divListPdfPriv.is-active > div > div > button {
+  height: 7vh;
+  width: 4.5vw;
+  border: none;
+  font-size: 1vw;
+  border-radius: 0 8.5px 8.5px 0;
+  background-color: rgb(224, 80, 80);
+  box-shadow: 0 0 5px rgb(233, 124, 91);
+  color: whitesmoke;
+  transition: all .2s ease; 
+}
+
+.divListPdfPriv.is-active > div > div > button:hover {
+  background-color:  rgb(235, 101, 101);
+  box-shadow: 0 0 5px rgb(247, 100, 94);
+
+}
+
+.divListPdfPriv.is-active > div > div > a > button {
+  height: 7vh;
+  width: 5vw;
+  border: none;
+  color: whitesmoke;
+  font-size: 1.4vw;
+  background-color: #30b683;
+  box-shadow: 0 0 5px #3ec490;
+  transition: all .2s ease; 
+}
+
+.divListPdfPriv.is-active > div > div > a > button:hover {
+  background-color: #46c594;
+  box-shadow: 0 0 10px #56d8a6;
+}
+
+/************ Team Documents ***********/
+.divListPdfTeam.is-active > div {
+  width: 60vw;
+  height: 7vh;
+  margin-top: 1vh;
+  position: relative;
+  margin-left: 20vw;
+  z-index: 100;
+  transition: width margin-left .2s ease; 
+}
+
+.divListPdfTeam > div > div {
+  display: flex;
+}
+
+.divListPdfTeam.is-active > div > div > h1 {
+  font-size: 3vw;
+  margin: auto;
+  margin-left: 2vw;
+}
+
+.divListPdfTeam.is-active > div > div > button {
+  height: 7vh;
+  width: 4.5vw;
+  border: none;
+  font-size: 1vw;
+  border-radius: 0 8.5px 8.5px 0;
+  background-color: rgb(224, 80, 80);
+  box-shadow: 0 0 5px rgb(233, 124, 91);
+  color: whitesmoke;
+  transition: all .2s ease; 
+}
+
+.divListPdfTeam.is-active > div > div > button:hover {
+  background-color:  rgb(235, 101, 101);
+  box-shadow: 0 0 5px rgb(247, 100, 94);
+
+}
+
+.divListPdfTeam.is-active > div > div > a > button {
+  height: 7vh;
+  width: 5vw;
+  border: none;
+  color: whitesmoke;
+  font-size: 1.4vw;
+  background-color: #30b683;
+  box-shadow: 0 0 5px #3ec490;
+  transition: all .2s ease; 
+}
+
+.divListPdfTeam.is-active > div > div > a > button:hover {
+  background-color: #46c594;
+  box-shadow: 0 0 10px #56d8a6;
+}
+
+/************* Admin ***************/
+
+.modalNewUser {
+  background-color:  rgba(101, 118, 155, 0.438);
+}
+
+.headerModal {
+  background-color: rgb(76, 91, 124);
+}
+
+.headerModal > h1 {
+  color: whitesmoke;
+  text-align: center;
+  width: 100%;
+}
+
+.bodyModal {
+  background-color:   rgba(101, 118, 155);
+}
+
+.bodyModal > div {
+  display: flex;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.bodyModal > div:first-child > input{
+  width: 85%;
+}
+
+.bodyModal > div > input{
+  background-color: #c3ceda;
+  border: none;
+  margin-bottom: 2.5px;
+  margin-top: 2.5px;
+  margin-left: 10px;
+  border-radius: 5px;
+  text-align: center;
+  color: rgb(90, 88, 88);
+}
+
+.bodyModal > div > label{
+  color: whitesmoke;
+}
+
+.bodyModal > div > select{
+  background-color: #c3ceda;
+  border: none;
+  border-radius: 5px;
+  margin-left: 5px;
+  color: rgb(90, 88, 88);
+}
+
+.bodyModal > div > select > option {
+  background-color: #aad5fd;
+}
+
+.bodyModal > div > select:focus {
+  background-color: #aad5fd;
+}
+
+#divBuscador {
+  height: 10vw;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#divBuscador  > button {
+  width: 33%;
+  border-radius: 5px;
+  height: 100%;
+  border: none;
+  background-color: #619984;
+}
+
+#divBuscador > button > p{
+  font-size: .9vw;
+  color: whitesmoke;
+  background-color: rgba(126, 201, 176, 0.411);
+  border-radius: 10px;
+}
+
+#divBuscador > div {
+  width: 33%;
+  border-radius: 5px;
+  height: 100%;
+  border: none;
+  background-color: #619984;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+#divBuscador > div > div {
+  width: 95%;
+  margin-left: 2.35%;
+  height: 3vh;
+  background-color: rgba(126, 201, 176, 0.411);
+  border-radius: 10px;
+}
+
+.footModal {
+  background-color: rgb(76, 91, 124);
+}
+
+.footModal > button:first-child {
+  background-color: rgb(224, 80, 80);
+  box-shadow: 0 0 5px rgb(233, 124, 91);
+  border: none;
+  width: 5vw;
+  height: 5vh;
+  color: whitesmoke;
+  border-radius: 6px;
+}
+
+.footModal > button:first-child:hover {
+  background-color: rgb(238, 119, 119);
+  box-shadow: 0 0 5px rgb(247, 158, 131);
+}
+
+.footModal > button:last-child {
+  background-color: rgb(109, 165, 202);
+  box-shadow: 0 0 5px rgb(91, 193, 233);
+  font-size: 1.5vw;
+  border: none;
+  width: 5.5vw;
+  height: 5.5vh;
+  color: whitesmoke;
+  border-radius: 7px;
+}
+
+.footModal > button:last-child:hover {
+  background-color: rgb(132, 184, 243);
+  box-shadow: 0 0 5px rgb(55, 120, 150);
+}
+
+.divListTeam{
+  width: 70vw;
+  margin-left: 15vw;
+}
+
+.menssageFail {
+  background-color: rgb(224, 80, 80);
+  box-shadow: 0 0 5px rgb(233, 124, 91);
+  width: 40%;
+  height: 7vh;
+  position: absolute;
+  left: 30%;
+  top: -50vh;
+  z-index: 999;
+  border-radius: 8px;
+  transition: top .5s ease;
+}
+
+.menssageFail.is-active {
+  top: -20vh;
+  transition: top .5s ease;
+}
+
+.menssageFail > h1 {
+  color: whitesmoke;
+  font-size: 1.5vw;
+  margin-top: auto;
+  text-align: center;
+}
+
+.listTeamCard {
+  background-color: #58628d;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 70vw;
+  border-radius: 8px;
+  height: 7vh;
+}
+
+.listTeamCard {
+  background-color: #58628d;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 70vw;
+  border-radius: 8px;
+  height: 7vh;
+}
+
+.listTeamCard > div:first-child {
+  width: 90%;
+  height: 100%;
+}
+
+.listTeamCard > div > h1{
+  color: whitesmoke;
+  width: 80%;
+  margin-left: 1vw;
+}
+
+.listTeamCard > div > button{
+  color: whitesmoke;
+  background-color: rgb(91, 120, 138);
+  box-shadow: 0 0 10px rgb(83, 111, 129);
+  height: 7vh;
+  width: 7vw;
+  border: none;
+  border-radius: 0;
+  position: relative;
+  z-index: -1;
+}
+
+.listTeamCard > div > button:hover {
+    background-color: rgb(105, 124, 136);
+    box-shadow: 0 0 5px rgb(83, 111, 129);
+}
+
+.listTeamCard > div:last-child > button {
+  color: whitesmoke;
+  background-color: rgb(224, 80, 80);
+  box-shadow: 0 0 5px rgb(233, 124, 91);
+  width: 7vw;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.listTeamCard > div:last-child > button:hover {
+  background-color: rgb(238, 119, 119);
+  box-shadow: 0 0 5px rgb(247, 158, 131);
+}
+
+.h1Delete > p{
+  font-family: verdana;
+  color: #f5f5f5;
+  position: relative;
+  width: 30vw;
+  margin: auto;
+  text-align: center;
+  background-color: rgb(110, 139, 156);
+  box-shadow: 0 0 10px rgb(83, 111, 129);
+  border-radius: 2px 0 0 2px;
+  height: 6vh;
+  z-index: -1;
+}
+
+.listTeamCard.is-active > div > p {
+  z-index: 1;
+  transition: all 1s ease;
+}
+
+.listTeamCard.is-active > div > button {
+  z-index: 1;
+  transition: all 1s ease;
+}
+
+#divListTeamUser {
+  border-radius: 8px;
+}
+
+.divCardUser {
+  background-color:  rgb(118, 137, 177);
+  width: 90%;
+  margin-left: 5%;
+  margin-top: .5vh;
+  border-radius: 7px;
+  display: flex;
+  height: 5.5vh;
+  justify-content: space-between;
+  align-items: center;
+  transition: traslate .5s ease;
+}
+
+.divCardUser > div > h2 {
+  color: whitesmoke;
+  font-family: verdana;
+  font-size: 1.3vw;
+  margin: auto;
+  margin-left: 1vw;
+}
+
+.divCardUser > div > button:last-child {
+  color: whitesmoke;
+  background-color: rgb(224, 80, 80);
+  box-shadow: 0 0 5px rgb(233, 124, 91);
+  height: 5.5vh;
+  width: 6vw;
+  border: none;
+  border-radius: 0 8px 8px 0;
+}
+
+.divCardUser > div > button:last-child:hover {
+  background-color: rgb(238, 119, 119);
+  box-shadow: 0 0 5px rgb(247, 158, 131);
+}
+
+.divCardUser > div > button:first-child {
+  color: whitesmoke;
+  background-color: rgb(80, 130, 224);
+  box-shadow: 0 0 5px rgb(80, 130, 224);
+  height: 5.5vh;
+  width: 6vw;
+  border: none;
+}
+
+.divCardUser > div > button:first-child:hover {
+  background-color: rgb(117, 155, 226);
+  box-shadow: 0 0 5px rgb(116, 154, 226);
+}
+
+.divInf {
+  background-color: rgb(80, 130, 224);
+  box-shadow: 0 0 5px rgb(80, 130, 224);
+  width: 59vw;
+  margin-left: 7.5%;
+  height: 4vh;
+  top: -5vh;
+  border-radius: 0 0 7px 7px;
+  position: absolute;
+  opacity: 0%;
+  display: flex;
+  z-index: -1;
+  justify-content: space-evenly;
+  transition: top .5s ease;
+}
+
+.divInf > div {
+  width: 20vw;
+  display: flex;
+  margin-left: -3vw;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.divInf > div:first-child {
+  width: 15vw;
+}
+
+.divInf > div:last-child  {
+  width: 10vw;
+}
+
+.divInf > div > div {
+  width: 20vw;
+}
+
+.divInf > div > div:first-child {
+  margin-top: 3px;
+  width: 3vw;
+}
+
+.divInf > div > div > h1 {
+  color: whitesmoke;
+  font-size: 1.5vw;
+  margin: auto;
+  margin-left: 5px;
+}
+
+.divInf > div > div > img {
+  width: 2vw;
+  margin-bottom: 2px;
+}
+
+.divInf.is-active {
+  top: 0;
+  position: relative;
+  opacity: 100%;
+  transition: top .5s ease;
+}
+
+/************* Pdf New ***************/
+
+.card {
+  position: relative;
+  width: 597px;
+  margin-left: 5vw;
+  height: 152vh;
+  top: 10vh;
+}
+
+.card>h1 {
+  background-color: rgb(185, 196, 87);
+  text-align: center;
+  font-size: 1.5vw;
+  position: relative;
+  top: 0.5vw;
+  width: 30%;
+  border-radius: 3px;
+  padding: 1px 0 4px 0;
+  margin-left: 35%;
+}
+
+.card_page {
+  width: 595.5px;
+  height: 841px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.divTitle {
+  display: flex;
+  position: absolute;
+  top: 220px;
+  width: 495px;
+  left: 50px;
+  justify-content: center;
+}
+
+.titles {
+  width: 495px;
+  position: relative;
+  word-spacing: 5px;
+  text-align: center;
+}
+
+.divBody {
+  position: relative;
+  width: 100%;
+  left: 50px;
+  top: 15vw;
+}
+
+.body {
+  font-size: 15.5px;
+  line-height: 15px;
+  width: 495px;
+  white-space: pre-wrap;
+  word-spacing: 5px;
+}
+
+.divLogo {
+  display: flex;
+  position: relative;
+  top: 25px;
+  width: 495px;
+  left: 50px;
+}
+
+.logo {
+  width: 3vw;
+  position: relative;
+}
+
+#divFirmasCard {
+  position: absolute;
+}
+
+.divFirmaCardSecond {
+  width: 495px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-left: 20px;
+  height: 200px;
+}
+
+.divFirmaCardSecond>div {
+  width: 200px;
+  margin-top: -3vw;
+}
+
+.divFirmaCardSecond>div>p {
+  font-size: 15px;
+  position: relative;
+  top: -2.5vh;
+  text-align: center;
+  margin-bottom: 9vh;
+  white-space: pre-wrap;
+  margin-left: 35px;
+  word-spacing: 3px;
+}
+
+hr {
+  margin-left: 1.5vw;
+  border: 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  height: 0;
+  width: 200px;
+}
+
+.divBtnPdf {
+  margin-top: 3vh;
+  width: 100%;
+}
+
+#btnPdf {
+  width: 30%;
+  margin-left: 35%;
+}
+
+/************ NEW PDF ************/
+
+#divForm {
+  position: absolute;
+  top: 11vh;
+}
+
+.menuNav {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+#container {
+  position: absolute;
+  top: 30vh;
 }

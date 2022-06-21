@@ -6,7 +6,8 @@ const schemaUser = new Schema ({
     lastname: String,
     username: String,
     password: String,
-    team: String
+    team: String,
+    position: String
 },{
     timestamps: true
 })

@@ -1,22 +1,37 @@
 import { useState, useEffect } from "react";
 import { getUserTeam, deleteUser } from "../services/routes";
 import Loader from "../HomeComponents/Loader";
+import { useSelector, useDispatch } from "react-redux";
 import { Modal } from "react-bootstrap";
-import { get } from "mongoose";
+import { STATE_NEW_USER } from "../reducer/crudReducer";
+import user from "../Sources/user(2).svg";
+import puesto from "../Sources/briefcase-regular-24.png";
+import create from "../Sources/plus-circle-regular-24.png";
 
 function UserTeams(name) {
-  const [users, setUsers] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [show, setShow] = useState(false);
-  const [reloadUsers, setReloadUsers] = useState(false)
+  const [users, setUsers] = useState({}),
+    [loading, setLoading] = useState(true),
+    { stateAuxNewUser } = useSelector((state) => state.crud),
+    dispatch = useDispatch(),
+    [show, setShow] = useState(false);
 
   useEffect(() => {
     getUser(name);
-    setReloadUsers(false)
-  }, [reloadUsers]);
+    setTimeout(() => {
+      dispatch(STATE_NEW_USER({ titulo: "state", valor: false }));
+    }, 500);
+  }, [stateAuxNewUser.state]);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (e) => {
+    let id = e.target.slot,
+      $id = document.getElementById(id);
+    if ($id.classList.contains('is-active')) {
+      $id.classList.remove("is-active");
+    } else {
+      $id.classList.add("is-active");
+    }
+  };
 
   const getUser = async (name) => {
     const response = await getUserTeam(name.name);
@@ -35,52 +50,70 @@ function UserTeams(name) {
   }
 
   const delUser = async (_id, team) => {
-    await deleteUser(_id)
-    getUser(team)
-    setReloadUsers(true)
-  }
+    console.log(team);
+    await deleteUser(_id);
+    const nombre = { name: team };
+    getUser(nombre);
+  };
+
+  const viewCreate = (create) => {
+    let arr = create.split("-"),
+      deleteArr = arr[2].slice(-16, -14),
+      stringCreate = `${deleteArr}-${arr[1]}-${arr[0]}`;
+    return stringCreate;
+  };
 
   return (
     <div>
       {users.map(
-        ({ name, lastname, username, password, team, _id, createdAt }) => (
-          <div className="divCardUser">
-            <h2 className="cardUser">
-              {name} {lastname}
-            </h2>
-            <div>
-              <button onClick={handleShow}>inf</button>
-              <button onClick={async () => {
-                await delUser(_id, team);
-              }}>delete</button>
-            </div>
-            <Modal
-              show={show}
-              onHide={handleClose}
-              size="md-down"
-              aria-labelledby="contained-modal-title-vcenter"
-              centered
-            >
-              <Modal.Header className="headerModal">
-                {" "}
-                <h1 className="titleModal">New User</h1>
-              </Modal.Header>
-              <Modal.Body className="bodyModal">
-                <div>
-                  <h2>
-                    Nombre: {name} {lastname}
-                  </h2>
-                  <h2>Area: {team}</h2>
-                  <h2>Usuario: {username}</h2>
-                </div>
-              </Modal.Body>
-              <Modal.Footer className="footModal">
-                <button id="btnModalClose" onClick={handleClose}>
-                  Close
+        ({ name, lastname, username, team, _id, position, createdAt }) => (
+          <>
+            <div className="divCardUser" key={_id}>
+              <div>
+                <h2 className="cardUser">
+                  {name} {lastname}
+                </h2>
+              </div>
+              <div>
+                <button slot={_id} onClick={handleShow}>
+                  Inf
                 </button>
-              </Modal.Footer>
-            </Modal>
-          </div>
+                <button
+                  onClick={async () => {
+                    await delUser(_id, team);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+            <div className="divInf" id={_id}>
+              <div>
+                <div>
+                  <img src={user} alt="" />
+                </div>
+                <div>
+                  <h1>{username}</h1>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <img src={puesto} alt="" />
+                </div>
+                <div>
+                  <h1> {position} </h1>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <img src={create} alt="" />
+                </div>
+                <div>
+                  <h1>{viewCreate(createdAt)}</h1>
+                </div>
+              </div>
+            </div>
+          </>
         )
       )}
     </div>

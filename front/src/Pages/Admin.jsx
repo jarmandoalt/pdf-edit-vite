@@ -8,7 +8,8 @@ import Cookies from "universal-cookie";
 function Admin() {
   const cookies = new Cookies(),
     username = `${cookies.get("username")}`,
-    id = `${cookies.get("id")}`;
+    id = `${cookies.get("id")}`,
+    { stateAuxNewUser } = useSelector((state) => state.crud)
 
   const reload = () => {
     console.log("reload");
@@ -16,7 +17,7 @@ function Admin() {
 
   const Verify = () => {
     switch (id) {
-      case "629c73dd87690554706ad9f7":
+      case "62abab6f852add3fb6fa2844":
         return (
           <div>
             <div>

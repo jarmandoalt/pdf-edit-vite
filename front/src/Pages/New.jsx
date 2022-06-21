@@ -18,7 +18,7 @@ const New = (e) => {
         <div className="car_div">
           <Card/>
         </div>
-        <div className="form_div">
+        <div id="divForm">
           <Forms
           />
         </div>
