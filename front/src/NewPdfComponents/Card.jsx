@@ -1,296 +1,237 @@
 import { createRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Draggable from "react-draggable";
-import { NEW_PDF } from "../reducer/crudReducer";
+import { CHANGE_SELECTION } from "../reducer/crudReducer";
+import "./index.css";
 
 const Card = () => {
-  const { dbNewPdf } = useSelector((state) => state.crud),
-    [setTitle, setSizeTitle] = useState({ x: 200, y: 180, w: 10, h: 20 }),
-    [editTitles, setEditTitles] = useState(false),
-    dispatch = useDispatch(),
-    {
-      posImg,
-      sizeImg,
-      title,
-      posTitle,
-      sizeTitle,
-      body,
-      firma,
-      urlImg,
-      editImg,
-      editTitle,
-      editBody,
-      editDate,
-      location,
-      valueFechaLocation,
-      fontFamily,
-    } = dbNewPdf,
-    refFirmas = createRef(),
-    refDragg1 = createRef(),
-    refDragg2 = createRef(),
-    refDragg3 = createRef(),
-    refDragg4 = createRef(),
-    refDragg5 = createRef(),
-    refDragg6 = createRef();
+  const [selectText, setSelectText] = useState({
+      start: 0,
+      end: 0,
+      endText: 0,
+      text: "",
+    }),
+    dispatch = useDispatch()
 
-  //Acomodo firmas
-  const acomodoFirmas = (e) => {
-    switch (firma) {
-      case "1":
-        return (
-          <div className="divFirmaCardSecond" ref={refDragg4} slot={3}>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-                {dbNewPdf.nameFirma1}
-              </p>
-            </div>
-          </div>
-        );
-      case "2":
-        return (
-          <div ref={refDragg4} slot={3} className="divFirmaCardSecond">
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma1}
-              </p>
-            </div>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma2}
-              </p>
-            </div>
-          </div>
-        );
-      case "3":
-        return (
-          <div className="divFirmaCardSecond" ref={refDragg4} slot={3}>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma1}
-              </p>
-            </div>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma2}
-              </p>
-            </div>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }}      ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma3}
-              </p>
-            </div>
-          </div>
-        );
-      case "4":
-        return (
-          <div className="divFirmaCardSecond" ref={refDragg4} slot={3}>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma1}
-              </p>
-            </div>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma2}
-              </p>
-            </div>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma3}
-              </p>
-            </div>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma4}
-              </p>
-            </div>
-          </div>
-        );
-      case "5":
-        return (
-          <div className="divFirmaCardSecond" ref={refDragg4} slot={3}>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma1}
-              </p>
-            </div>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma2}
-              </p>
-            </div>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma3}
-              </p>
-            </div>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-              {dbNewPdf.nameFirma4}
-              </p>
-            </div>
-            <div ref={refDragg4} slot={3}>
-              <hr ref={refDragg4} slot={3} />
-              <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyFirmas}`, fontSize: `${dbNewPdf.valueSizeFirmas}px`, textAlign: `${dbNewPdf.valueStyleTextFirmas}` }} ref={refDragg4} slot={3}>
-                {dbNewPdf.nameFirma1}
-              </p>
-            </div>
-          </div>
-        );
-      default:
-        break;
-    }
-  };
+  const clickDocument = (e) => {
+    let $documents = document.getElementById("documents"),
+      selection = window.getSelection(),
+      textSelect = selection.toString(),
+      rangeSelect = selection.anchorNode,
+      rangeSelectOff = selection.focusNode,
+      numberNodesParent = rangeSelect.parentNode.childNodes.length,
+      text = $documents.textContent,
+      textHtml = $documents.innerHTML,
+      sumaNodes = 0,
+      rangeNew = " ",
+      auxRangeSelect = 0,
+      arrTextSelect = textSelect.split("\n"),
+      numTextSelect = arrTextSelect[0].length,
+      rangeSelectNumAux = rangeSelect.textContent.slice(-numTextSelect),
+      directionSelect = 0;
 
-  const acomodoFechaLocation = () => {
-    switch (valueFechaLocation) {
-      case "0":
-        return (
-          <h2 style={{ fontFamily: `${dbNewPdf.valueFontFamilyLocation}`, fontSize: `${dbNewPdf.valueSizeLocation}px`, textAlign: `${dbNewPdf.valueStyleTextLocation}` }} slot={4} ref={refDragg6}>
-            {location}
-          </h2>
-        );
-      case "1":
-        let addFecha = `${location}, (dia) de (mes) de (año)`;
-        return (
-          <h2 style={{ fontFamily: `${dbNewPdf.valueFontFamilyLocation}`, fontSize: `${dbNewPdf.valueSizeLocation}px`, textAlign: `${dbNewPdf.valueStyleTextLocation}` }} slot={4} ref={refDragg6}>
-            {addFecha}
-          </h2>
-        );
-      default:
-        break;
-    }
-  };
+      console.log('////////////////////////////////////');
 
-  const arrayRefs = [refDragg1, refDragg2, refDragg3, refDragg5, refDragg6];
-  const arrayState = [
-    "valueImg",
-    "valueTitle",
-    "valueBody",
-    "valueFirmas",
-    "valueLocation",
-  ];
-
-  const getPosition = (e) => {
-    let elementStyle = window.getComputedStyle(
-        arrayRefs[e.target.slot].current
-      ),
-      data = elementStyle.getPropertyValue("transform"),
-      auxData = data.substring(0, data.length - 1),
-      arrData = auxData.split(","),
-      stringArr = arrData[4] + arrData[5];
-      stringArr = stringArr.slice(1, -1)
-    console.log(stringArr);
-    dispatch(NEW_PDF({ titulo: arrayState[e.target.slot], valor: stringArr }));
-  };
-
-  const selectContent = (e) => {
-    let arrSize = [dbNewPdf.valueSizeImg, dbNewPdf.valueSizeTitle, dbNewPdf.valueSizeBody, dbNewPdf.valueSizeFirmas, dbNewPdf.valueSizeLocation]
-    let arrStyleText = [dbNewPdf.valueStyleTextImg, dbNewPdf.valueStyleTextTitle, dbNewPdf.valueStyleTextBody, dbNewPdf.valueStyleTextFirmas, dbNewPdf.valueStyleTextLocation]
-    for (let index = 0; index < arrayRefs.length; index++) {
-      if (index == e.target.slot) {
-        arrayRefs[index].current.style.border = "solid .1px black";
-        dispatch(NEW_PDF({ titulo: "selectObj", valor: index }));
-        if (index == 0) { //por si select esta en la img
-          dispatch(NEW_PDF({ titulo: "valueSize", valor: arrSize[index]/10 }));           
-        }else {
-          dispatch(NEW_PDF({ titulo: "valueSize", valor: arrSize[index] }));
-          dispatch(NEW_PDF({ titulo: "valueStyleText", valor: arrStyleText[index] }));
-        } 
+    if (rangeSelect !== rangeSelectOff) {
+      if (textSelect.includes("\n")) {
+        if (arrTextSelect[0] !== rangeSelectNumAux) {
+          auxRangeSelect = rangeSelectOff;
+          directionSelect = 1;
+        } else {
+          auxRangeSelect = rangeSelect;
+          directionSelect = 0;
+        }
       } else {
-        arrayRefs[index].current.style.borderStyle = "none";
+        auxRangeSelect = rangeSelect;
+      }
+    } else {
+      auxRangeSelect = rangeSelect;
+    }
+
+    let parentSelect = auxRangeSelect.parentElement,
+      numberNodesParentSpan = parentSelect.parentNode.childNodes.length;
+
+    // Getting css properties
+    let elementStyle = window.getComputedStyle(
+        document.getElementById(parentSelect.id)
+      ),
+      fontFamilySelect = elementStyle.getPropertyValue("font-family"),
+      fontSizeSelect = elementStyle.getPropertyValue("font-size"),
+      colorSelect = elementStyle.getPropertyValue("color"),
+      backgroundSelect = elementStyle.getPropertyValue("background-color"),
+      textAlignSelect = elementStyle.getPropertyValue("text-align");
+
+    if (parentSelect.nodeName == "SPAN") {
+      console.log('padreSpan');
+      for (let index = 0; index < numberNodesParentSpan; index++) {
+        if (rangeNew == " ") {
+          if (parentSelect.previousSibling == null) {
+          } else {
+            rangeNew = parentSelect.previousSibling;
+            if (rangeNew.length > 0) {
+              sumaNodes = sumaNodes + rangeNew.length - 1;
+            }
+            if (rangeNew.tagName == "BR") {
+              sumaNodes = sumaNodes + 4;
+            }
+            if (rangeNew.nodeName == "SPAN") {
+              sumaNodes = sumaNodes + rangeNew.textContent.length;
+              console.log("span", rangeNew.textContent.length);
+            }
+          }
+        } else {
+          if (rangeNew.previousSibling == null) {
+          } else {
+            rangeNew = rangeNew.previousSibling;
+            if (rangeNew.length > 0) {
+              sumaNodes = sumaNodes + rangeNew.length;
+            }
+            if (rangeNew.tagName == "BR") {
+              sumaNodes = sumaNodes + 4;
+            }
+            if (rangeNew.nodeName == "SPAN") {
+              sumaNodes = sumaNodes + rangeNew.textContent.length;
+              console.log("span", rangeNew.textContent.length);
+            }
+          }
+        }
+        console.log(rangeNew);
+      }
+    } else {
+      for (let index = 0; index < numberNodesParent; index++) {
+        if (rangeNew == " ") {
+          if (auxRangeSelect.previousSibling == null) {
+          } else {
+            rangeNew = auxRangeSelect.previousSibling;
+            if (rangeNew.length > 0) {
+              sumaNodes = sumaNodes + rangeNew.length;
+            }
+            if (rangeNew.tagName == "BR") {
+              sumaNodes = sumaNodes + 4;
+            }
+            if (rangeNew.nodeName == "SPAN") {
+              sumaNodes = sumaNodes + rangeNew.textContent.length;
+              console.log("span", rangeNew.textContent.length);
+            }
+          }
+        } else {
+          if (rangeNew.previousSibling == null) {
+            rangeNew = rangeNew.parentElement
+          } else {
+            rangeNew = rangeNew.previousSibling;
+            if (rangeNew.length > 0) {
+              sumaNodes = sumaNodes + rangeNew.length;
+            }
+            if (rangeNew.tagName == "BR") {
+              sumaNodes = sumaNodes + 4;
+            }
+            if (rangeNew.tagName == "SPAN") {
+              sumaNodes = sumaNodes + rangeNew.textContent.length;
+              console.log("span", rangeNew.textContent.length);
+            }
+          }
+        }
+        console.log(rangeNew);
+      }
+    }
+
+    console.log(sumaNodes,  " suma");
+    console.log(rangeSelect);
+    console.log(textSelect);
+
+    if (rangeSelect !== rangeSelectOff) {
+      if (directionSelect == 1) {
+        dispatch(
+          CHANGE_SELECTION({
+            start: selection.focusOffset + sumaNodes +rangeSelect.length,
+            end:
+              selection.focusOffset +
+              sumaNodes + rangeSelect.length +
+              textSelect.length +
+              (arrTextSelect.length - 1) * 3,
+            endText: text.length + 4,
+            node: rangeSelect.tagName,
+            fontFamily: fontFamilySelect,
+            fontSize: fontSizeSelect,
+            color: colorSelect,
+            background: backgroundSelect,
+            textAlign: textAlignSelect,
+          })
+        );
+      } else {
+        dispatch(
+          CHANGE_SELECTION({
+            start: selection.anchorOffset + sumaNodes,
+            end:
+              selection.anchorOffset +
+              sumaNodes +
+              textSelect.length +
+              (arrTextSelect.length - 1) * 3,
+            endText: text.length + 4,
+            node: rangeSelect.tagName,
+            fontFamily: fontFamilySelect,
+            fontSize: fontSizeSelect,
+            color: colorSelect,
+            background: backgroundSelect,
+            textAlign: textAlignSelect,
+          })
+        );
+      }
+    } else {
+      if (selection.anchorOffset > selection.focusOffset) {
+        dispatch(
+          CHANGE_SELECTION({
+            end: selection.anchorOffset + sumaNodes,
+            start: selection.focusOffset + sumaNodes,
+            endText: text.length + 4,
+            node: rangeSelect.tagName,
+            fontFamily: fontFamilySelect,
+            fontSize: fontSizeSelect,
+            color: colorSelect,
+            background: backgroundSelect,
+            textAlign: textAlignSelect,
+          })
+        );
+      } else {
+        dispatch(
+          CHANGE_SELECTION({
+            start: selection.anchorOffset + sumaNodes,
+            end: selection.focusOffset + sumaNodes,
+            endText: text.length + 4,
+            node: parentSelect.tagName,
+            fontFamily: fontFamilySelect,
+            fontSize: fontSizeSelect,
+            color: colorSelect,
+            background: backgroundSelect,
+            textAlign: textAlignSelect,
+          })
+        );
       }
     }
   };
 
-  const getPositions = (e) => {
-    console.log(e.target.slot);
-  };
+  const [target, setTarget] = useState();
+  const [frame, setFrame] = useState({
+    translate: [0, 0],
+    scale: [1, 1],
+  });
 
-  //limita la posicion de arrastre de la imagen
-  const limitHanderImg = {
-    left: 0,
-    top: 0,
-    right: 594 - dbNewPdf.valueSizeImg,//514
-    bottom: 841,
-  };
+  useEffect(() => {
+    setTarget(document.querySelector(".target"));
+  }, []);
 
   return (
-    <div>
-      <div className="card">
-        <h1>Vista Previa</h1>
-        <div className="card_page">
-          <Draggable
-            bounds={limitHanderImg}
-            defaultPosition={{ x: 255, y: 50 }}
-            onStart={selectContent}
-            onStop={getPosition}
-          >
-            <img
-              ref={refDragg1}
-              id="imgCard"
-              src={urlImg}
-              width="80px"
-              slot={0}
-              draggable={false}
-              style={{width: `${dbNewPdf.valueSizeImg}px`}}
-            />
-            
-          </Draggable>
-          <Draggable
-            onStart={selectContent}
-            onStop={getPosition}
-            defaultPosition={{ x: 250, y: 155 }}
-          >
-            <div id="divFechaLocationCard" slot={4} ref={refDragg6}>
-              {acomodoFechaLocation()}
-            </div>
-          </Draggable>
-          <Draggable
-            onStart={selectContent}
-            onStop={getPosition}
-            defaultPosition={{ x: 195, y: 195 }}
-          >
-            <h1
-              style={{ fontFamily: `${dbNewPdf.valueFontFamilyTitle}`, fontSize: `${dbNewPdf.valueSizeTitle}px`, textAlign: `${dbNewPdf.valueStyleTextTitle}` }}
-              id="titleCard"
-              ref={refDragg2}
-              slot={1}
-            >
-              {title}
-            </h1>
-          </Draggable>
-          <Draggable
-            onStart={selectContent}
-            onStop={getPosition}
-            defaultPosition={{ x: 50, y: 235 }}
-          >
-            <p style={{ fontFamily: `${dbNewPdf.valueFontFamilyBody}`, fontSize: `${dbNewPdf.valueSizeBody}px`, textAlign: `${dbNewPdf.valueStyleTextBody}`}} id="bodyCard" className="body" ref={refDragg3} slot={2}>
-              {body}
-            </p>
-          </Draggable>
-          <Draggable onStart={selectContent} onStop={getPosition} defaultPosition={{ x: 20, y: 550 }}>
-            <div id="divFirmasCard" ref={refDragg5} slot={3}>
-              {acomodoFirmas()}
-            </div>
-          </Draggable>
-        </div>
+    <>
+      <div id="documentss" className="card">
+        <p
+          id="documents"
+          onClick={clickDocument}
+          contentEditable
+          className="cardPage"
+          autoFocus
+        ></p>
       </div>
-    </div>
+    </>
   );
 };
 

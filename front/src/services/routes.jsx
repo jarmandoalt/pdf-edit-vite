@@ -115,35 +115,14 @@ export async function getPayRoll () {
 
 export async function savePdf (productData) {
     try {
-      const formData = new FormData(),
-        valueTitle = `${productData.dbNewPdf.valueTitle} ${productData.dbNewPdf.valueSizeTitle} ${productData.dbNewPdf.valueStyleTextTitle} ${productData.dbNewPdf.valueFontFamilyTitle}`,
-        valueBody = `${productData.dbNewPdf.valueBody} ${productData.dbNewPdf.valueSizeBody} ${productData.dbNewPdf.valueStyleTextBody} ${productData.dbNewPdf.valueFontFamilyBody}`,
-        valueFirmas = `${productData.dbNewPdf.valueFirmas} ${productData.dbNewPdf.valueSizeFirmas} ${productData.dbNewPdf.valueStyleTextFirmas} ${productData.dbNewPdf.valueFontFamilyFirmas}`,
-        valueLocation = `${productData.dbNewPdf.valueLocation} ${productData.dbNewPdf.valueSizeLocation} ${productData.dbNewPdf.valueStyleTextLocation} ${productData.dbNewPdf.valueFontFamilyLocation}`,
-        valueImg = `${productData.dbNewPdf.valueImg} ${productData.dbNewPdf.valueSizeImg}`
-
+      const formData = new FormData()
 
       formData.append('title', productData.dbNewPdf.title)
       formData.append('body', productData.dbNewPdf.body)
-      formData.append('numFirmas', productData.dbNewPdf.numFirmas)
-      formData.append('imgUrl', productData.dbNewPdf.urlImg)
-      formData.append('firma', productData.dbNewPdf.firma)
       formData.append('access', productData.dbNewPdf.access)
       formData.append('idaccess', productData.dbNewPdf.idaccess)
       formData.append('team', productData.dbNewPdf.team)
-      formData.append('valueTitle', valueTitle)
-      formData.append('valueImg', valueImg)
-      formData.append('valueBody', valueBody)
-      formData.append('valueFirmas', valueFirmas)
-      formData.append('valueLocation', valueLocation)
-      formData.append('location', productData.dbNewPdf.location)
-      formData.append('date', productData.dbNewPdf.valueFechaLocation)
-      formData.append('nameFirma1', productData.dbNewPdf.nameFirma1)
-      formData.append('nameFirma2', productData.dbNewPdf.nameFirma2)
-      formData.append('nameFirma3', productData.dbNewPdf.nameFirma3)
-      formData.append('nameFirma4', productData.dbNewPdf.nameFirma4)
-      formData.append('nameFirma5', productData.dbNewPdf.nameFirma5)
-       
+     
       const response = await Axios({
         url: `${baseUrl}/v1/new`,
         method: 'POST',

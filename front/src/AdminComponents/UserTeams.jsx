@@ -4,9 +4,6 @@ import Loader from "../HomeComponents/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { STATE_NEW_USER } from "../reducer/crudReducer";
-import user from "../Sources/user(2).svg";
-import puesto from "../Sources/briefcase-regular-24.png";
-import create from "../Sources/plus-circle-regular-24.png";
 
 function UserTeams(name) {
   const [users, setUsers] = useState({}),
@@ -87,7 +84,7 @@ function UserTeams(name) {
                 </button>
               </div>
             </div>
-            <div className="divInf" id={_id}>
+            <div className="divInf" id={_id} key={_id} >
               <div>
                 <div>
                   <img src={user} alt="" />

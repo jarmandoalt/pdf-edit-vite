@@ -7,6 +7,8 @@ import Loader from "../HomeComponents/Loader";
 import Cookies from "universal-cookie";
 import { NEW_PDF_EDIT, NEW_EDIT_PDF } from "../reducer/crudReducer";
 import { useSelector, useDispatch } from "react-redux";
+import "../PdfEdit/index.css";
+import jsPDF from "jspdf";
 
 const Pdf = () => {
   const [isLoader, setIsLoader] = useState(true),
@@ -16,7 +18,8 @@ const Pdf = () => {
     [usuario, setUsuario] = useState([]),
     cookies = new Cookies(),
     idUser = cookies.get("pdfId"),
-    dispatch = useDispatch();
+    dispatch = useDispatch(),
+    { dbPdf } = useSelector((state) => state.crud)
 
   useEffect(() => {
     async function loadPdf() {
@@ -24,23 +27,17 @@ const Pdf = () => {
 
       if (response.status === 200) {
         dispatch(NEW_PDF_EDIT(response.data.pdfs));
-        dispatch(NEW_EDIT_PDF({titulo: 'nameFirma1' , valor: response.data.pdfs[0].nameFirma1}));
-        dispatch(NEW_EDIT_PDF({titulo: 'nameFirma2' , valor: response.data.pdfs[0].nameFirma2}));
-        dispatch(NEW_EDIT_PDF({titulo: 'nameFirma3' , valor: response.data.pdfs[0].nameFirma3}));
-        dispatch(NEW_EDIT_PDF({titulo: 'nameFirma4' , valor: response.data.pdfs[0].nameFirma4}));
-        dispatch(NEW_EDIT_PDF({titulo: 'nameFirma5' , valor: response.data.pdfs[0].nameFirma5}));
-        dispatch(NEW_EDIT_PDF({titulo: "location", valor: response.data.pdfs[0].location}))
       }
 
       setIsLoader(false);
     }
 
-    async function loadPayRoll () {
+    async function loadPayRoll() {
       const response = await getPayRoll();
       if (response.status === 200) {
         setPayRoll(response.data.payrolls);
       }
-    };
+    }
 
     loadPdf();
     loadPayRoll();
@@ -61,15 +58,15 @@ const Pdf = () => {
         elemento.lastname
           .toString()
           .toLowerCase()
-          .includes(terminoBusqueda.toLowerCase())||
-          elemento.nomina
-            .toString()
-            .toLowerCase()
-            .includes(terminoBusqueda.toLowerCase())||
-            elemento.puesto
-              .toString()
-              .toLowerCase()
-              .includes(terminoBusqueda.toLowerCase())
+          .includes(terminoBusqueda.toLowerCase()) ||
+        elemento.nomina
+          .toString()
+          .toLowerCase()
+          .includes(terminoBusqueda.toLowerCase()) ||
+        elemento.puesto
+          .toString()
+          .toLowerCase()
+          .includes(terminoBusqueda.toLowerCase())
       ) {
         return elemento;
       }
@@ -95,36 +92,70 @@ const Pdf = () => {
     dispatch(NEW_EDIT_PDF({ titulo: "Puesto", valor: user.puesto }));
   };
 
+  // Generar Pdf
+  const generatePdf = () => {
+    var doc = new jsPDF("p", "pt", "a4");
+
+    doc.html(document.querySelector("#documentsNew"), {
+      callback: function (pdf) {
+        //pdf.save(`${title}.pdf`);
+        doc.output("dataurlnewwindow", { filename: `${dbPdf.title}.pdf` });
+      },
+    });
+  }; 
+
+
   return (
     <div>
       <div>
         <Header titles={"PDF/edit"}></Header>
       </div>
-      <div>{isLoader ? <Loader /> : <ViewPdfCard />}</div>
-      <div  id="divPdfEditform">
-        <div>
-          <div>
-            <input
-              type="text"
-              name="busqueda"
-              placeholder="Buscar por nombre, apellido, puesto o nomina"
-              value={busqueda}
-              autoComplete="new-password"
-              onChange={handleBusqueda}
-            />
-          </div>
+      <div id="divPdfNew">
+        <div>{isLoader ? <Loader /> : <ViewPdfCard />}</div>
+        <div id="divPdfEditform">
           <div>
             <div>
-              {usuario.map(({ name, lastname, puesto, nomina, _id }) => (
-                <button onClick={selectUser} value={_id}>
-                  {" "}
-                  {name} {lastname} {nomina} {puesto}{" "}
-                </button>
-              ))}
+              <input
+                type="text"
+                name="busqueda"
+                placeholder="Buscar por nombre, apellido, puesto o nomina"
+                value={busqueda}
+                autoComplete="off"
+                onChange={handleBusqueda}
+              />
             </div>
+            { usuario.length > 0 ?
+            <div id="targetsPdfEdit">
+                {usuario.map(({ name, lastname, puesto, nomina, _id }) => (
+                  <button onClick={selectUser} value={_id}>
+                    {" "}
+                    {nomina} <br/> {puesto} <br/> {name} {lastname} {" "}
+                  </button>
+                ))}
+            </div> :
+            <div id="targetsPdfEdit">
+              <div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div> }
           </div>
+          {isLoader ? <Loader /> : <ViewPdfForm />}
+          <button id="btnPdf" className="btnRoot" onClick={generatePdf}>
+              Descargar PDF
+            </button>
         </div>
-        {isLoader ? <Loader /> : <ViewPdfForm />}
       </div>
     </div>
   );

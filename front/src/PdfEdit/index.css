@@ -1,0 +1,173 @@
+/*************  Card  ************/
+.cardNew {
+    position: relative;
+    width: 605.5px;
+    height: 110vh;
+    margin-left: 6vw;
+    background-color: rgba(245, 255, 250, 0);
+    top: 15vh;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10vh;
+} 
+
+.cardNew > div:first-child {
+    display: flex;
+} 
+
+.cardNew > div:first-child > h1 {
+    margin: auto;
+    width: 50%;
+    font-size: 1.8vw;
+    text-align: center;
+    background-image: linear-gradient(180deg,  #8ec5a7c9, #c7e4d4c9);
+    border-radius: 5px;
+    color: rgb(114, 114, 119);
+    margin-bottom: 5px;
+}
+
+.cardPageNew {
+    position: relative;
+    margin: auto;
+    width: 595.5px;
+    height: 841px;
+    background-color: white;
+    box-shadow: 0 0 2px rgb(70, 68, 68);
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+/********** Form  ************/
+#divPdfNew {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10vh;
+    align-items: center;
+}
+
+#divPdfEditform {
+    position: relative;
+    margin: auto;
+    top: 13.3vh;
+    height: 841px;
+    background-image: linear-gradient(180deg,  #77a58cc9, #d9ebe1c9);
+    border-radius: 8px;
+    
+}
+
+#divPdfEditform > div {
+    position: relative;
+    width: 40vw;
+    margin: auto;
+    top: 3vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#divPdfEditform > div > div {
+    position: relative;
+    top: 0vh;
+    width: 32vw;
+    display: flex;
+    margin: auto;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+#divPdfEditform > div > div > input {
+    position: relative;
+    background-color: rgba(230, 230, 250, 0.247);
+    border: none;
+    width: 25vw;
+    border-radius: 5px;
+    margin: auto;
+    height: 5vh;
+    text-align: center;
+
+}
+
+#divPdfEditform > div > div > label {
+    color: rgb(61, 60, 60);
+
+}
+
+#formPdfNew {
+    position: relative;
+}
+
+#btnPdf {
+    position: relative;
+    top: 10vh;
+    left: 30%;
+    background-color: rgb(37, 125, 131);
+    border: none;
+    border-radius: 5px;
+    width: 40%;
+    height: 5vh;
+    margin-top: 1vh;
+    color: lavender;
+}
+
+#btnPdf:hover {
+    background-color: rgb(70, 135, 139);
+    color: whitesmoke;
+}
+
+#targetsPdfEdit {
+    display: flex;
+    flex-direction: column;
+    height: 38vh;
+    width: 80%;
+    overflow: auto;
+}
+
+#targetsPdfEdit > button{
+    background: rgba(230, 230, 250, 0.247);
+    height: 15vh;
+    border: none;
+    width: 100%;
+    border-radius: 5px;margin-bottom: 5px;
+    color: rgb(80, 77, 77);
+}
+
+#targetsPdfEdit > button:hover{
+    background-color: #616892;
+    height: 15vh;
+    border: none;
+    color: lavender;
+}
+
+#targetsPdfEdit > div {
+    background-image: linear-gradient(180deg,  #585eb6f3, #4c3ecabb);
+    height: 15vh;
+    border: none;
+    width: 100%;
+    border-radius: 5px;margin-bottom: 5px;
+    color: lavender;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#targetsPdfEdit > div:hover{
+    background-color: #384aaf;
+    height: 15vh;
+    border: none;
+}
+
+#targetsPdfEdit > div > div {
+    background-color: #9295a771;
+    height: 3vh;
+    width: 40%;
+    margin: auto;
+    border: none;
+    border-radius: 2px;
+}
+
+#targetsPdfEdit > div > div:first-child {
+    width: 30%;
+}
+
+#targetsPdfEdit > div > div:last-child {
+    width: 70%;
+}
